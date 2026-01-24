@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Jenkins",
+    "role": "Club Lead",
+    "image_path": "/assets/team/sarah.jpg",
+    "linkedin_url": "https://linkedin.com"
+  },
+  {
+    "id": 2,
+    "name": "David Chen",
+    "role": "Technical Head",
+    "image_path": "/assets/team/david.jpg",
+    "linkedin_url": "https://linkedin.com"
+  },
+  {
+    "id": 3,
+    "name": "Priya Patel",
+    "role": "Event Coordinator",
+    "image_path": "/assets/team/priya.jpg",
+    "linkedin_url": "https://linkedin.com"
+  },
+  {
+    "id": 4,
+    "name": "James Wilson",
+    "role": "Design Lead",
+    "image_path": "/assets/team/james.jpg",
+    "linkedin_url": "https://linkedin.com"
+  }
+]

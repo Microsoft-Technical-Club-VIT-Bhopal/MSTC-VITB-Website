@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Azure AI Hackathon",
+    "date": "Oct 15, 2026",
+    "image_path": "/assets/events/ai-hack.jpg",
+    "status": "upcoming",
+    "description": "Build the future with Azure OpenAI Service. 24 hours of coding, pizza, and innovation.",
+    "location": "Innovation Hub, Block B"
+  },
+  {
+    "id": 2,
+    "title": "Cloud Computing 101",
+    "date": "Nov 02, 2026",
+    "image_path": "/assets/events/cloud-101.jpg",
+    "status": "upcoming",
+    "description": "Introduction to cloud concepts and deploying your first app on Azure.",
+    "location": "Seminar Hall 2"
+  },
+  {
+    "id": 3,
+    "title": "Git & GitHub Workshop",
+    "date": "Sep 20, 2026",
+    "image_path": "/assets/events/git-workshop.jpg",
+    "status": "past",
+    "description": "Master version control and open source contribution basics.",
+    "location": "Computer Lab 3"
+  }
+]
