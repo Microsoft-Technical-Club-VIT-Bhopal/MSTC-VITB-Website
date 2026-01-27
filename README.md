@@ -1,3 +1,4 @@
+
 # Microsoft Club Website
 
 A modern, beginner-friendly website for the Microsoft Club built with React, Vite, and Tailwind CSS.
@@ -24,8 +25,8 @@ A modern, beginner-friendly website for the Microsoft Club built with React, Vit
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd micro
+   git clone https://github.com/Microsoft-Technical-Club-VIT-Bhopal/MSTC-VITB-Website.
+   cd MSTC-VITB-Website
    ```
 
 2. **Install dependencies**
@@ -54,31 +55,29 @@ npm run preview
 
 ## 📁 Project Structure
 
-```
-micro/
-├── public/              # Static assets
-│   ├── posters/        # Event posters (add your images here)
-│   └── team/           # Team member photos (add your images here)
+MSTC-VITB-Website/
+├── public/                  # Static assets (served as-is)
+│   ├── posters/            # Event posters (e.g., `workshop-2026.jpg`)
+│   └── team/               # Team member photos (e.g., `john-doe.jpg`)
 ├── src/
-│   ├── components/     # Reusable components
+│   ├── components/         # Reusable UI pieces
 │   │   ├── Header.jsx
 │   │   ├── Footer.jsx
 │   │   ├── EventCard.jsx
 │   │   └── TeamCard.jsx
-│   ├── pages/         # Page components
+│   ├── pages/              # Route-based page components
 │   │   ├── Home.jsx
 │   │   ├── About.jsx
 │   │   ├── Events.jsx
 │   │   ├── Team.jsx
 │   │   └── Contact.jsx
-│   ├── data/          # JSON data files
+│   ├── data/               # Editable content (no code changes!)
 │   │   ├── events.json
 │   │   └── team.json
-│   ├── App.jsx        # Main app component
-│   ├── main.jsx       # Entry point
-│   └── index.css      # Global styles
-└── package.json
-```
+│   ├── App.jsx             # Main layout + routing
+│   ├── main.jsx            # React entry point
+│   └── index.css           # Global styles & Tailwind imports
+└── tailwind.config.js      # Custom colors & theme
 
 ## ✏️ How to Update Content
 
@@ -112,8 +111,8 @@ Edit `src/data/team.json`:
   "year": "3rd Year",
   "department": "Computer Science",
   "image": "/team/john-doe.jpg",
-  "linkedin": "https://linkedin.com/in/johndoe",
-  "github": "https://github.com/johndoe"
+  "linkedin": "https://linkedin.com/in/mstc",
+  "github": "https://github.com/mstc"
 }
 ```
 
