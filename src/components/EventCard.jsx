@@ -18,7 +18,7 @@ export default function EventCard({ event }) {
       ref={cardRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="glass rounded-2xl overflow-hidden group hover:shadow-xl hover:shadow-ms-blue/10 transition-all duration-300 border border-slate-200 dark:border-white/10"
+      className="glass rounded-2xl overflow-hidden group hover:shadow-xl hover:shadow-ms-blue/10 transition-all duration-300 border border-slate-200 dark:border-white/10 hover-raise soft-glow"
     >
       <div className="relative h-48 overflow-hidden">
         <div className="absolute inset-0 bg-ms-blue/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>

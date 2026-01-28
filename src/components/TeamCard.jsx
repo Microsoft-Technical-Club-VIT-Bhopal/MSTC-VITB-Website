@@ -3,7 +3,7 @@ import { Linkedin, LayoutTemplate } from 'lucide-react';
 
 export default function TeamCard({ member }) {
   return (
-    <div className="group relative w-full aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer">
+    <div data-anim="reveal" className="group relative w-full aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer hover-raise soft-glow">
       {/* Background Image */}
       {member.image_path ? (
         <img 
