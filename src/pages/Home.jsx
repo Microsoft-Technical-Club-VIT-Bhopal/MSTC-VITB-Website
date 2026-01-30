@@ -53,7 +53,7 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div ref={heroTextRef} className="space-y-6">
             <div className="inline-block px-4 py-2 rounded-full border border-ms-blue/30 bg-ms-blue/5 backdrop-blur-sm mb-4">
-              <span className="text-ms-blue dark:text-ms-neon font-medium text-sm tracking-wide uppercase">Welcome to Microsoft Club</span>
+              <span className="text-ms-blue dark:text-ms-neon font-medium text-sm tracking-wide uppercase">Welcome to Microsoft Technical Club</span>
             </div>
             
             <h1 className="text-5xl md:text-8xl font-bold font-display tracking-tighter leading-tight text-slate-900 dark:text-white">
@@ -86,7 +86,7 @@ export default function Home() {
           {[...Array(2)].map((_, i) => (
              <React.Fragment key={i}>
                 <div className="flex items-center gap-12">
-                   <span className="text-4xl md:text-6xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-400 dark:from-white/20 dark:to-white/40 opacity-50">MICROSOFT CLUB</span>
+                   <span className="text-4xl md:text-6xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-400 dark:from-white/20 dark:to-white/40 opacity-50">MICROSOFT TECHNICAL CLUB</span>
                    <Terminal className="text-ms-blue w-12 h-12 opacity-50" />
                    <span className="text-4xl md:text-6xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-slate-400 dark:from-white/20 dark:to-white/40 opacity-50">CLOUD COMPUTING</span>
                    <Cpu className="text-ms-purple w-12 h-12 opacity-50" />

@@ -27,7 +27,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-8 reveal-text">
             <p className="text-xl leading-relaxed text-slate-600 dark:text-slate-300">
-              The Microsoft Club is a student-led community dedicated to empowering individuals through technology. We believe in the power of code to solve real-world problems.
+              The Microsoft Technical Club is a student-led community dedicated to empowering individuals through technology. We believe in the power of code to solve real-world problems.
             </p>
             <p className="text-xl leading-relaxed text-slate-600 dark:text-slate-300">
               Our mission is to bridge the gap between academic learning and industry standards, providing hands-on experience with the latest Microsoft technologies, from Azure to AI.

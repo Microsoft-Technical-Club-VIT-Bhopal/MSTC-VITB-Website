@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-5 footer-item">
             <Link to="/" className="text-3xl font-bold font-display tracking-tighter flex items-center gap-2 mb-6">
-              <span className="text-white">MS Club</span>
+              <span className="text-white">Microsoft Technical Club</span>
             </Link>
             <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-8">
               Empowering the next generation of tech leaders. Join our community to learn, build, and innovate with Microsoft technologies.
@@ -112,7 +112,7 @@ export default function Footer() {
              MICROSOFT
            </h1>
            <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 mt-4 footer-item">
-              <p>&copy; {new Date().getFullYear()} Microsoft Club. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Microsoft Technical Club. All rights reserved.</p>
               <p className="flex items-center gap-1">Designed with <Heart size={12} className="text-ms-blue fill-current" /> by Tech Team</p>
            </div>
         </div>

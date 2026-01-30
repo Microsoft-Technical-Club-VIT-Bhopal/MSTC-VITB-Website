@@ -12,7 +12,7 @@ export default function Join() {
             Join the <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-ms-blue to-ms-neon">Movement.</span>
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 mb-12 max-w-lg">
-            Ready to level up your skills? Fill out the form to become an official member of the Microsoft Club. Get access to exclusive workshops, hackathons, and mentorship.
+            Ready to level up your skills? Fill out the form to become an official member of the Microsoft Technical Club. Get access to exclusive workshops, hackathons, and mentorship.
           </p>
           
           <div className="space-y-6">

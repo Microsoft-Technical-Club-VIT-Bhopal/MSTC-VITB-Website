@@ -92,7 +92,7 @@ function Contact() {
 
             {/* Google Form Embed */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Join Microsoft Club</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Join Microsoft Technical Club</h2>
               <div className="bg-white rounded-lg shadow-md p-8">
                 <p className="text-gray-700 mb-6">
                   Fill out this form to join our club and stay updated with all our events and activities!

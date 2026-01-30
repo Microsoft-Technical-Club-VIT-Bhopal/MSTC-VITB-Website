@@ -70,7 +70,7 @@ export default function Header() {
             <div className="bg-ms-blue rounded-[1px]"></div>
             <div className="bg-yellow-500 rounded-[1px]"></div>
           </div>
-          <span className="text-slate-900 dark:text-white">MS Club</span>
+          <span className="text-slate-900 dark:text-white">Microsoft Technical Club</span>
         </Link>
 
         {/* Desktop Nav */}
