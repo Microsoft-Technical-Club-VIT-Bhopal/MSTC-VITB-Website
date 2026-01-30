@@ -1,4 +1,3 @@
-
 # Microsoft Club Website
 
 A modern, beginner-friendly website for the Microsoft Club built with React, Vite, and Tailwind CSS.
