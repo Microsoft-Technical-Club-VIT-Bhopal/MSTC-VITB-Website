@@ -1,24 +1,36 @@
 [
   {
     "id": 1,
-    "title": "Azure AI Hackathon",
-    "date": "Oct 15, 2026",
-    "image_path": "/assets/events/ai-hack.jpg",
-    "status": "upcoming",
-    "description": "Build the future with Azure OpenAI Service. 24 hours of coding, pizza, and innovation.",
-    "location": "Innovation Hub, Block B"
+    "title": "Code Garuda 3.0",
+    "date": "During Advitya",
+    "image_path": "/assets/events/code-garuda.jpg",
+    "status": "past",
+    "tag": "advitya",
+    "description": "A fun hackathon where creativity met coding, pushing participants to innovate and build exciting projects!",
+    "location": "Advitya"
   },
   {
     "id": 2,
-    "title": "Cloud Computing 101",
-    "date": "Nov 02, 2026",
-    "image_path": "/assets/events/cloud-101.jpg",
-    "status": "upcoming",
-    "description": "Introduction to cloud concepts and deploying your first app on Azure.",
-    "location": "Seminar Hall 2"
+    "title": "Vainateya 2.0",
+    "date": "During Advitya",
+    "image_path": "/assets/events/vainateya.jpg",
+    "status": "past",
+    "tag": "advitya",
+    "description": "A poster-making competition using online tools like Canva, where design enthusiasts showcased their artistic skills and storytelling through visuals!",
+    "location": "Advitya"
   },
   {
     "id": 3,
+    "title": "Tech Hackathon",
+    "date": "Advitya — Coming soon",
+    "image_path": "/assets/events/tech-hackathon.jpg",
+    "status": "upcoming",
+    "tag": "advitya",
+    "description": "Coming soon 🔜",
+    "location": "Advitya"
+  },
+  {
+    "id": 4,
     "title": "Git & GitHub Workshop",
     "date": "Sep 20, 2026",
     "image_path": "/assets/events/git-workshop.jpg",

@@ -2,7 +2,7 @@ function Contact() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-ms-orange to-ms-purple text-white py-16">
+      <section data-anim="reveal" className="bg-gradient-to-r from-ms-orange to-ms-purple text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-5xl font-bold text-center mb-4">Get In Touch</h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
@@ -12,7 +12,7 @@ function Contact() {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-16 bg-gray-50">
+      <section data-anim="reveal" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -111,7 +111,7 @@ function Contact() {
                     href="https://forms.google.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="btn-primary inline-block"
+                    className="btn-primary inline-block btn-animate"
                   >
                     Open Form
                   </a>
