@@ -4,7 +4,7 @@ import TeamCard from '../components/TeamCard';
 
 export default function Team() {
   return (
-    <div className="min-h-screen pt-24 pb-20 container mx-auto px-6">
+    <div data-anim="reveal" className="min-h-screen pt-24 pb-20 container mx-auto px-6">
       <div className="max-w-3xl mb-16">
         <h1 className="text-4xl md:text-6xl font-bold font-display text-slate-900 dark:text-white mb-6">
           Meet the <span className="text-ms-blue">Innovators</span>.

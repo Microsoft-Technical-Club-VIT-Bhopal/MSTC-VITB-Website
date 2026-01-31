@@ -9,7 +9,7 @@ export default function Events() {
   const filteredEvents = eventsData.filter(event => event.status === filter);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 container mx-auto px-6">
+    <div data-anim="reveal" className="min-h-screen pt-24 pb-20 container mx-auto px-6">
       <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
         <div>
            <h1 className="text-4xl md:text-6xl font-bold font-display text-slate-900 dark:text-white mb-4">Events</h1>
