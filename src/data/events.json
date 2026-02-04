@@ -1,47 +1,75 @@
 [
   {
-    "id": 1,
-    "title": "SIH Success Blueprint",
-    "date": "15 March 2025",
-    "status": "upcoming",
-    "location": "MSTC Hall",
-    "description": "A complete roadmap session to crack Smart India Hackathon with insights from winners.",
-    "image_path": "https://images.unsplash.com/photo-1556761175-129418cb2dfe"
-  },
+  "id": 1,
+  "slug": "sih-success-blueprint",
+  "title": "SIH Success Blueprint",
+  "date": "29 December 2025",
+  "status": "past",
+  "location": "MSTC Hall",
+  "description": "A complete roadmap session to crack Smart India Hackathon with insights from winners.",
+  "cover": "/events/sih/cover.jpg",
+  "gallery": [
+    "/events/sih/cover.jpg"
+  ]
+},
   {
-    "id": 2,
-    "title": "Code Garuda 3.0",
-    "date": "2 April 2025",
-    "status": "upcoming",
-    "location": "Main Auditorium",
-    "description": "A competitive coding contest designed to test problem-solving and speed.",
-    "image_path": "https://images.unsplash.com/photo-1518770660439-4636190af475"
-  },
+  "id": 2,
+  "slug": "code-garuda-3",
+  "title": "Code Garuda 3.0",
+  "date": "advitya 2025",
+  "status": "past",
+  "location": "Main Auditorium",
+  "description": "A competitive coding contest designed to test problem-solving and speed.",
+  "cover": "/events/code-garuda-3/cover.jpg",
+  "gallery": [
+    "/events/code-garuda-3/eventview.jpg",
+    "/events/code-garuda-3/judge.jpg",
+    "/events/code-garuda-3/par1.jpg",
+    "/events/code-garuda-3/par2.jpg",
+    "/events/code-garuda-3/team-code.jpg"
+  ]
+},
   {
-    "id": 3,
-    "title": "Vainateya 2.0",
-    "date": "20 April 2025",
-    "status": "upcoming",
-    "location": "Online",
-    "description": "An innovation-driven technical event focusing on real-world engineering challenges.",
-    "image_path": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-  },
+  "id": 6,
+  "slug": "vainateya-2",
+  "title": "Vainateya 2.0",
+  "date": "advitya 2025",
+  "status": "past",
+  "location": "Online",
+  "description": "An innovation-driven technical event focusing on real-world engineering challenges.",
+  "cover": "/events/vainateya-2/cover.jpg",
+  "gallery": [
+    "/events/vainateya-2/audience.jpg",
+    "/events/vainateya-2/judge.jpg",
+    "/events/vainateya-2/judgeceleb.jpg",
+    "/events/vainateya-2/participant.jpg"
+  ]
+},
   {
     "id": 4,
-    "title": "Azure Cloud Summit",
-    "date": "10 February 2025",
+    "title": "code-garuda-2",
+    "date": "un availabl",
     "status": "past",
     "location": "MSTC Seminar Room",
     "description": "Hands-on cloud workshop covering Azure fundamentals and deployment strategies.",
-    "image_path": "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+    "image_path": ""
   },
   {
     "id": 5,
-    "title": "AI/ML Bootcamp",
-    "date": "18 January 2025",
+    "title": "vainateya-2",
+    "date": "un available",
     "status": "past",
     "location": "Lab Complex",
     "description": "A beginner-friendly bootcamp covering AI, ML, and real project demos.",
-    "image_path": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+    "image_path": ""
+  },
+  {
+    "id": 7,
+    "title": "Fun Hackathon advitya 2026",
+    "date": "Reveal Soon",
+    "status": "upcoming",
+    "location": "MSTC Hall",
+    "description": "Coming soon",
+    "image_path": ""
   }
 ]

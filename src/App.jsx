@@ -6,10 +6,15 @@ import Events from "./pages/Events";
 import Team from "./pages/Team";
 import Join from "./pages/Join";
 
+
+import EventDetail from "./pages/EventDetail";
+
+
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        <Route path="/events/:slug" element={<EventDetail />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />} />
