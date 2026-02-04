@@ -1,41 +1,47 @@
 [
   {
     "id": 1,
-    "title": "Code Garuda 3.0",
-    "date": "During Advitya",
-    "image_path": "/assets/events/code-garuda.jpg",
-    "status": "past",
-    "tag": "advitya",
-    "description": "A fun hackathon where creativity met coding, pushing participants to innovate and build exciting projects!",
-    "location": "Advitya"
+    "title": "SIH Success Blueprint",
+    "date": "15 March 2025",
+    "status": "upcoming",
+    "location": "MSTC Hall",
+    "description": "A complete roadmap session to crack Smart India Hackathon with insights from winners.",
+    "image_path": "https://images.unsplash.com/photo-1556761175-129418cb2dfe"
   },
   {
     "id": 2,
-    "title": "Vainateya 2.0",
-    "date": "During Advitya",
-    "image_path": "/assets/events/vainateya.jpg",
-    "status": "past",
-    "tag": "advitya",
-    "description": "A poster-making competition using online tools like Canva, where design enthusiasts showcased their artistic skills and storytelling through visuals!",
-    "location": "Advitya"
+    "title": "Code Garuda 3.0",
+    "date": "2 April 2025",
+    "status": "upcoming",
+    "location": "Main Auditorium",
+    "description": "A competitive coding contest designed to test problem-solving and speed.",
+    "image_path": "https://images.unsplash.com/photo-1518770660439-4636190af475"
   },
   {
     "id": 3,
-    "title": "Tech Hackathon",
-    "date": "Advitya — Coming soon",
-    "image_path": "/assets/events/tech-hackathon.jpg",
+    "title": "Vainateya 2.0",
+    "date": "20 April 2025",
     "status": "upcoming",
-    "tag": "advitya",
-    "description": "Coming soon 🔜",
-    "location": "Advitya"
+    "location": "Online",
+    "description": "An innovation-driven technical event focusing on real-world engineering challenges.",
+    "image_path": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
   },
   {
     "id": 4,
-    "title": "Git & GitHub Workshop",
-    "date": "Sep 20, 2026",
-    "image_path": "/assets/events/git-workshop.jpg",
+    "title": "Azure Cloud Summit",
+    "date": "10 February 2025",
     "status": "past",
-    "description": "Master version control and open source contribution basics.",
-    "location": "Computer Lab 3"
+    "location": "MSTC Seminar Room",
+    "description": "Hands-on cloud workshop covering Azure fundamentals and deployment strategies.",
+    "image_path": "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+  },
+  {
+    "id": 5,
+    "title": "AI/ML Bootcamp",
+    "date": "18 January 2025",
+    "status": "past",
+    "location": "Lab Complex",
+    "description": "A beginner-friendly bootcamp covering AI, ML, and real project demos.",
+    "image_path": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
   }
 ]

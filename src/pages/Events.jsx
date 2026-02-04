@@ -1,67 +1,75 @@
-import React, { useState } from 'react';
-import eventsData from '../data/events.json';
-import EventCard from '../components/EventCard';
-import { clsx } from 'clsx';
+import { useState } from "react";
+import eventsData from "../data/events.json";
+import EventCard from "../components/EventCard";
+import clsx from "clsx";
 
 export default function Events() {
-  const [filter, setFilter] = useState('upcoming'); // 'upcoming' | 'past'
+  const [filter, setFilter] = useState("upcoming");
 
-  const filteredEvents = eventsData.filter(event => event.status === filter);
+  const filteredEvents = eventsData.filter(
+    (event) => event.status === filter
+  );
 
   return (
-    <div data-anim="reveal" className="min-h-screen pt-24 pb-20 container mx-auto px-6">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
-        <div>
-           <h1 className="text-4xl md:text-6xl font-bold font-display text-slate-900 dark:text-white mb-4">Events</h1>
-           <p className="text-slate-600 dark:text-slate-400 text-lg">Join us for workshops, hackathons, and tech talks.</p>
-        </div>
+    <section className="min-h-screen pt-28 pb-20 container mx-auto px-6">
+      {/* Header */}
+      <div className="text-center mb-14">
+        <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 dark:text-white">
+          Events
+        </h1>
+        <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Join us for workshops, hackathons, bootcamps, and tech talks organized by MSTC
+        </p>
+      </div>
 
-        {/* Filter Tabs */}
-        <div className="relative p-1 bg-slate-100 dark:bg-white/10 rounded-full backdrop-blur-sm flex">
-          {/* Sliding Pill Background */}
-          <div 
+      {/* Filter Tabs */}
+      <div className="flex justify-center mb-12">
+        <div className="relative bg-slate-100 dark:bg-white/10 p-1 rounded-full flex w-72">
+          <div
             className={clsx(
-              "absolute top-1 bottom-1 rounded-full bg-white dark:bg-ms-blue shadow-sm transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]",
-              filter === 'upcoming' ? "left-1 w-[calc(50%-4px)]" : "left-[calc(50%+2px)] w-[calc(50%-4px)]"
+              "absolute top-1 bottom-1 w-1/2 rounded-full bg-white dark:bg-slate-900 shadow transition-all duration-300",
+              filter === "upcoming" ? "left-1" : "left-1/2"
             )}
-          ></div>
+          />
 
           <button
-            onClick={() => setFilter('upcoming')}
+            onClick={() => setFilter("upcoming")}
             className={clsx(
-              "relative z-10 px-8 py-2 rounded-full text-sm font-bold transition-colors duration-300 w-full text-center",
-              filter === 'upcoming' 
-                ? "text-slate-900 dark:text-white" 
-                : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+              "relative z-10 w-1/2 py-2 text-sm font-semibold",
+              filter === "upcoming"
+                ? "text-slate-900 dark:text-white"
+                : "text-slate-500"
             )}
           >
             Upcoming
           </button>
+
           <button
-            onClick={() => setFilter('past')}
+            onClick={() => setFilter("past")}
             className={clsx(
-              "relative z-10 px-8 py-2 rounded-full text-sm font-bold transition-colors duration-300 w-full text-center",
-              filter === 'past' 
-                ? "text-slate-900 dark:text-white" 
-                : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+              "relative z-10 w-1/2 py-2 text-sm font-semibold",
+              filter === "past"
+                ? "text-slate-900 dark:text-white"
+                : "text-slate-500"
             )}
           >
-            Past Events
+            Past
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map(event => (
+      {/* Events Grid */}
+      {filteredEvents.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredEvents.map((event) => (
             <EventCard key={event.id} event={event} />
-          ))
-        ) : (
-           <div className="col-span-full py-20 text-center text-slate-500 dark:text-slate-500">
-             <p className="text-xl">No {filter} events found.</p>
-           </div>
-        )}
-      </div>
-    </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-slate-500 dark:text-slate-400">
+          No events found.
+        </p>
+      )}
+    </section>
   );
 }
