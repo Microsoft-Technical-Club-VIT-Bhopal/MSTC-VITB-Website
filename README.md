@@ -59,7 +59,7 @@ npm run dev
 ```
 
 ## 📁 Project Structure
-
+```
 
 MSTC-VITB-Website/
 ├── public/                  # Static assets (served as-is)
@@ -84,7 +84,7 @@ MSTC-VITB-Website/
 │   ├── main.jsx            # React entry point
 │   └── index.css           # Global styles & Tailwind imports
 └── tailwind.config.js      # Custom colors & theme
-
+```
 ## ✏️ How to Update Content
 
 ### Adding/Editing Events
