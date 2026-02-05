@@ -22,8 +22,14 @@ export default function EventCard({ event }) {
     });
   };
 
+  // ✅ Safety fallback for slug
+  const eventSlug = event.slug || "";
+
   return (
-    <Link to={`/events/${event.slug}`} className="block">
+    <Link
+      to={eventSlug ? `/events/${eventSlug}` : "#"}
+      className="block"
+    >
       <div
         ref={cardRef}
         onMouseEnter={handleMouseEnter}
@@ -35,23 +41,24 @@ export default function EventCard({ event }) {
           <div className="absolute inset-0 bg-ms-blue/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
 
           {(event.cover || event.image_path) ? (
-  <img
-    src={event.cover || event.image_path}
-    alt={event.title}
-    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-    onError={(e) => {
-      e.target.onerror = null;
-      e.target.src =
-        "https://images.unsplash.com/photo-1633419461186-7d721f1de865?q=80&w=2070&auto=format&fit=crop";
-    }}
-  />
-) : (
-  <div className="w-full h-full bg-gradient-to-br from-ms-blue to-ms-purple flex items-center justify-center">
-    <span className="text-white font-display font-bold text-2xl opacity-50">
-      MS Club
-    </span>
-  </div>
-)}
+            <img
+              src={event.cover || event.image_path}
+              alt={event.title}
+              loading="lazy"   // ✅ LAZY LOADING
+              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://images.unsplash.com/photo-1633419461186-7d721f1de865?q=80&w=2070&auto=format&fit=crop";
+              }}
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-ms-blue to-ms-purple flex items-center justify-center">
+              <span className="text-white font-display font-bold text-2xl opacity-50">
+                MS Club
+              </span>
+            </div>
+          )}
 
           {/* Status Badge */}
           <div className="absolute top-4 right-4 z-20">

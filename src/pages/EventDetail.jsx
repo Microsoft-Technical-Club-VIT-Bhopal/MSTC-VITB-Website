@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function EventDetail() {
   const { slug } = useParams();
-  const event = eventsData.find(e => e.slug === slug);
+  const event = eventsData.find((e) => e.slug === slug);
 
   const [current, setCurrent] = useState(0);
 
@@ -13,7 +13,11 @@ export default function EventDetail() {
     return <p className="text-center pt-40">Event not found</p>;
   }
 
-  const images = [event.cover, ...(event.gallery || [])];
+  // ✅ Safe image array
+  const images = [
+    event.cover,
+    ...(event.gallery || []),
+  ].filter(Boolean);
 
   const nextImage = () => {
     setCurrent((prev) => (prev + 1) % images.length);
@@ -29,31 +33,38 @@ export default function EventDetail() {
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
         {event.title}
       </h1>
-      <p className="text-slate-500 mb-10">{event.date} • {event.location}</p>
+      <p className="text-slate-500 mb-10">
+        {event.date} • {event.location}
+      </p>
 
       {/* Image Slider */}
       <div className="relative max-w-4xl mx-auto">
         <img
           src={images[current]}
-          alt="event"
+          alt={event.title}
+          loading="lazy"   // ✅ LAZY LOADING
           className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
         />
 
         {/* Left Arrow */}
-        <button
-          onClick={prevImage}
-          className="absolute top-1/2 -translate-y-1/2 left-4 bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition"
-        >
-          <ChevronLeft size={28} />
-        </button>
+        {images.length > 1 && (
+          <button
+            onClick={prevImage}
+            className="absolute top-1/2 -translate-y-1/2 left-4 bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition"
+          >
+            <ChevronLeft size={28} />
+          </button>
+        )}
 
         {/* Right Arrow */}
-        <button
-          onClick={nextImage}
-          className="absolute top-1/2 -translate-y-1/2 right-4 bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition"
-        >
-          <ChevronRight size={28} />
-        </button>
+        {images.length > 1 && (
+          <button
+            onClick={nextImage}
+            className="absolute top-1/2 -translate-y-1/2 right-4 bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition"
+          >
+            <ChevronRight size={28} />
+          </button>
+        )}
       </div>
 
       {/* Description */}
