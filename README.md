@@ -53,6 +53,11 @@ Preview production build:
 npm run preview
 ```
 
+To check the website in your local host
+```bash
+npm run dev
+```
+
 ## 📁 Project Structure
 
 MSTC-VITB-Website/
