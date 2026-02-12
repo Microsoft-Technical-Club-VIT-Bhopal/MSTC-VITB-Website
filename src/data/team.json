@@ -1,30 +1,368 @@
-[
-  {
-    "id": 1,
-    "name": "Sarah Jenkins",
-    "role": "Club Lead",
-    "image_path": "/assets/team/sarah.jpg",
-    "linkedin_url": "https://linkedin.com"
-  },
-  {
-    "id": 2,
-    "name": "David Chen",
-    "role": "Technical Head",
-    "image_path": "/assets/team/david.jpg",
-    "linkedin_url": "https://linkedin.com"
-  },
-  {
-    "id": 3,
-    "name": "Priya Patel",
-    "role": "Event Coordinator",
-    "image_path": "/assets/team/priya.jpg",
-    "linkedin_url": "https://linkedin.com"
-  },
-  {
-    "id": 4,
-    "name": "James Wilson",
-    "role": "Design Lead",
-    "image_path": "/assets/team/james.jpg",
-    "linkedin_url": "https://linkedin.com"
+{
+  "teams": {
+    "The Panel": [
+      {
+        "id": 1,
+        "name": "Divyanshi Kadyan",
+        "role": "President",
+        "image": "/team/f2cf5324-e33e-474c-bf36-c2f1d7f87519-1_all_20687 - Divyanshi.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/divyanshi-kadyan-899301289",
+        "instagram_url": "https://instagram.com/divyaanshi.ii"
+      },
+      {
+        "id": 2,
+        "name": "Tanishk Jain",
+        "role": "Vice President",
+        "image": "/team/tanishk.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/tanishhhk/",
+        "instagram_url": "https://instagram.com/_tanishhhkk"
+      },
+      {
+        "id": 3,
+        "name": "Vanya Ahuja",
+        "role": "Student Coordinator",
+        "image": "/team/18da8965-1ad0-4ab7-aa2d-de4df74b02ea.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/vanyaahuja/",
+        "instagram_url": "https://instagram.com/_vanyaahuja"
+      },
+      {
+        "id": 4,
+        "name": "Vibhor Gupta",
+        "role": "Student Coordinator",
+        "image": "/team/IMG_20260127_112403 - VIBHOR GUPTA 24BCY10335.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/vibhor-gupta-2a7672277/",
+        "instagram_url": "https://instagram.com/_vibhor.555s"
+      }
+    ],
+    "Event Management Team": [
+      {
+        "id": 60,
+        "name": "Suwarnika",
+        "role": "Lead",
+        "image": "/team/IMG-20250223-WA0073 - Suwarnika Srivastava 23bsa10092.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/suwarnika-srivastava",
+        "instagram_url": "https://instagram.com/Suwarnika._"
+      },
+      {
+        "id": 61,
+        "name": "Riya Shukla",
+        "role": "Member",
+        "image": "/team/IMG-20250711-WA0010 - Riya Shukla.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/riya-shukla-277495324",
+        "instagram_url": "https://instagram.com/riya.236550"
+      },
+      {
+        "id": 62,
+        "name": "Damini Gupta",
+        "role": "Member",
+        "image": "/team/Snapchat-582269116 - DAMINI GUPTA 24BCY10225.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/damini-gupta-077a902b1",
+        "instagram_url": "https://instagram.com/gdamini979"
+      },
+      {
+        "id": 63,
+        "name": "Alok Singh Tomar",
+        "role": "Member",
+        "image": "/team/IMG_20250305_004722_112_Original - Alok Singh Tomar 23mip10059.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/aloktomarr",
+        "instagram_url": "https://instagram.com/tomxrrr"
+      },
+      {
+        "id": 64,
+        "name": "Nirmalya Das",
+        "role": "Member",
+        "image": "/team/IMG_20241121_123100 - Nirmalya Das.jpg",
+        "linkedin_url": "www.linkedin.com/in/nirmalya-debidutta-das-805853325",
+        "instagram_url": "https://instagram.com/nirrrmalya"
+      },
+      {
+        "id": 65,
+        "name": "Abhinaya",
+        "role": "Member",
+        "image": "/team/20251214164554180 - ABHINAYA SINGH 23MIP10115.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/abhinaya-singh-ba436828a",
+        "instagram_url": "https://instagram.com/abhinaya.2404"
+      },
+      {
+        "id": 66,
+        "name": "Kaushal Tanna",
+        "role": "Member",
+        "image": "/team/IMG-20250504-WA0092 - KAUSHAL TANNA 24BCE10364.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/kaushal-tanna-a67772328",
+        "instagram_url": "https://instagram.com/kaushaltanna___2007"
+      },
+      {
+        "id": 67,
+        "name": "Prasiddhi Jain",
+        "role": "Member",
+        "image": "/team/IMG-20251226-WA0048~2 - Prasiddhi Jain.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/prasiddhi-jain-56309827a/",
+        "instagram_url": "https://instagram.com/prasiddhi_jain"
+      },
+      {
+        "id": 68,
+        "name": "Mansi Singh",
+        "role": "Member",
+        "image": "/team/IMG-20250806-WA0020 - Mansi Singh 23bce10047.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/mansi-singh-7b75772ab/",
+        "instagram_url": "https://instagram.com/mansisingh8144"
+      },
+      {
+        "id": 69,
+        "name": "Aarushi Chaudhary",
+        "role": "Member",
+        "image": "/team/WhatsApp Image 2025-08-06 at 15.19.14_8b26cd90 - Aarushi Chaudhary.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/aarushi-chaudhary-451499331",
+        "instagram_url": "https://instagram.com/aaru__chaudhary_07"
+      },
+      {
+        "id": 70,
+        "name": "Sambhavi Dubey",
+        "role": "Member",
+        "image": "/team/WhatsApp Image 2025-04-17 at 23.14.46_48edc7d1 - Shambhavi Dubey 23bai10405.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/shambhavi-dubey-8062682b9/",
+        "instagram_url": "https://instagram.com/shambhavi._dubey"
+      }
+    ],
+    "Design Team": [
+      {
+        "id": 10,
+        "name": "Pratyaksha Singh",
+        "role": "Lead",
+        "image": "/team/ps.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/pratyaksha-singh-764916277/",
+        "instagram_url": "https://instagram.com/pratyakshasingh_"
+      },
+      {
+        "id": 11,
+        "name": "Unnati Singh",
+        "role": "Member",
+        "image": "/team/IMG-20260111-WA0038 - UNNATI SINGH 24BAI10625.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/unnati-singh-14ab5034b",
+        "instagram_url": "https://instagram.com/unnati._.singh_1"
+      },
+      {
+        "id": 15,
+        "name": "Aditya Talreja",
+        "role": "Member",
+        "image": "/team/aditya.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/adityatalreja/",
+        "instagram_url": "https://instagram.com/adioncrackkk"
+      },
+      {
+        "id": 17,
+        "name": "Abhishek Choudhary",
+        "role": "Member",
+        "image": "/team/IMG-20251025-WA0254 - ABHISHEK CHOUDHARY 24BCE11056.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/abhishekxchoudhary/",
+        "instagram_url": "https://instagram.com/mcixabhi"
+      },
+      {
+        "id": 12,
+        "name": "Shreya Chimote",
+        "role": "Member",
+        "image": "/team/20251107_155742_-_shreya_chimote.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/shreya-chimote-675709289",
+        "instagram_url": "https://instagram.com/shreyaa_chimote"
+      },
+      {
+        "id": 13,
+        "name": "Shreya Kumar",
+        "role": "Member",
+        "image": "/team/photo - SHREYA KUMAR 24BCY10136.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/shreya-kumar-ba9510373/",
+        "instagram_url": "https://instagram.com/shreyaaaa___05"
+      },
+      {
+        "id": 14,
+        "name": "Abhinav Yadav",
+        "role": "Member",
+        "image": "/team/abhinav yadav.jpeg",
+        "linkedin_url": "https://www.linkedin.com/company/mstc-vit-bhopal/",
+        "instagram_url": "https://instagram.com/thalaforenoughreasons"
+      },
+      {
+        "id": 16,
+        "name": "Anchal",
+        "role": "Member",
+        "image": "/team/1000041630 - Anchal Verma.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/anchal-verma-56a341340",
+        "instagram_url": "https://instagram.com/aanchalverma636"
+      }
+    ],
+    "Technical Team": [
+      {
+        "id": 40,
+        "name": "Priyam Jain",
+        "role": "Lead",
+        "image": "/team/001pj - Priyam Jain VIT-B.JPG",
+        "linkedin_url": "https://www.linkedin.com/in/dev-priyam/",
+        "instagram_url": "https://instagram.com/meetpriyamjain"
+      },
+      {
+        "id": 41,
+        "name": "Virat Nigam",
+        "role": "Co-lead",
+        "image": "/team/Snapchat-1573785739 - Virat Nigam.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/viratnigam/",
+        "instagram_url": "https://instagram.com/_virat_nigam_18"
+      },
+      {
+        "id": 50,
+        "name": "Aditya Roy",
+        "role": "Member",
+        "image": "/team/Aditya_Roy - Aditya Roy.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/aditya-roy-0492ab26b/",
+        "instagram_url": "https://instagram.com/aditya_roy5005"
+      },
+      {
+        "id": 47,
+        "name": "Vishwansh Singh",
+        "role": "Member",
+        "image": "/team/vishwansh.png",
+        "linkedin_url": "https://www.linkedin.com/in/vishwansh-singh-578355315",
+        "instagram_url": "https://instagram.com/singhvishwansh_0910"
+      },
+      {
+        "id": 49,
+        "name": "Puneet Chaturvedi",
+        "role": "Member",
+        "image": "/team/photo - Puneet Chaturvedi.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/puneet-chaturvedi-0043a3327/",
+        "instagram_url": "https://instagram.com/puneetchaturvedi07"
+      },
+      {
+        "id": 48,
+        "name": "Puranjay Kapoor",
+        "role": "Member",
+        "image": "/team/IMG_20250806_201924 - Puranjay Kapoor 23bhi10003.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/puranjay-kapoor-06a3a52ab",
+        "instagram_url": "https://instagram.com/puranjay10_"
+      },
+      {
+        "id": 42,
+        "name": "Preksha Agarwal",
+        "role": "Member",
+        "image": "/team/IMG-20241021-WA0021 - Preksha Agarwal 23bce10948.jpg",
+        "linkedin_url": "https://www.linkedin.com/company/mstc-vit-bhopal/",
+        "instagram_url": "https://instagram.com/_.prekshee._"
+      },
+      {
+        "id": 43,
+        "name": "Shivangi",
+        "role": "Member",
+        "image": "/team/IMG_20260128_232313 - SHIVANGI 24MIP10079.jpg",
+        "linkedin_url": "https://in.linkedin.com/in/shivangi-53790130b",
+        "instagram_url": "https://instagram.com/_iiishivangipathak_"
+      },
+      {
+        "id": 44,
+        "name": "Prem Patro",
+        "role": "Member",
+        "image": "/team/IMG-20250806-WA0032 - B PREM SAI PATRO 24BCE10954.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/prem-patro/",
+        "instagram_url": "https://instagram.com/_prem173_"
+      },
+      {
+        "id": 45,
+        "name": "Rishika Sinha",
+        "role": "Member",
+        "image": "/team/IMG-20250301-WA0002 - Rishika Sinha.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/rishika-sinha-2a660b324/",
+        "instagram_url": "https://instagram.com/rish_ika3373"
+      },
+      {
+        "id": 46,
+        "name": "Arpita Gupta",
+        "role": "Member",
+        "image": "/team/prof - Arpita Gupta.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/arpita-gupta-01023728a/",
+        "instagram_url": "https://instagram.com/arpitaa._gupta"
+      },
+      {
+        "id": 51,
+        "name": "Uditya Narayan Tiwari",
+        "role": "Member",
+        "image": "/team/ee00bc1d-70b4-4d1b-a49f-7ca6604722e2.jpg",
+        "linkedin_url": "https://www.linkedin.com/company/mstc-vit-bhopal/",
+        "instagram_url": ""
+      }
+    ],
+    "Photography & Marketing Team": [
+      {
+        "id": 20,
+        "name": "Srijan Jha",
+        "role": "Lead",
+        "image": "/team/IMG_20250713_231051 - Srijan Jha 23bce10161.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/srijan-jha-72b83b358",
+        "instagram_url": "https://instagram.com/srijan_1636"
+      },
+      {
+        "id": 21,
+        "name": "Akshat Balariya",
+        "role": "Co Lead",
+        "image": "/team/IMG-20241229-WA0007 - Akshat Balariya.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/akshat-balariya/",
+        "instagram_url": "https://instagram.com/akshat_3574"
+      },
+      {
+        "id": 22,
+        "name": "Sanchita Jain",
+        "role": "Member",
+        "image": "/team/IMG-20260127-WA0005 - SANCHITA JAIN 24BAI10497.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/sanchita-jain-950217358/",
+        "instagram_url": "https://instagram.com/Sanchita_jainn"
+      },
+      {
+        "id": 23,
+        "name": "Alkesh Jat",
+        "role": "Member",
+        "image": "/team/IMG-20260115-WA0071 - ALKESH JAT 24BCE11215.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/alkesh-jat-405555280/",
+        "instagram_url": "https://instagram.com/stfu_ju.vii"
+      }
+    ],
+    "Content Team": [
+      {
+        "id": 30,
+        "name": "Lavanya Sharma",
+        "role": "Lead",
+        "image": "/team/lavanya.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/lavanya-sharma-90070a336",
+        "instagram_url": "https://instagram.com/laav_28"
+      },
+      {
+        "id": 31,
+        "name": "Shria Biju",
+        "role": "Member",
+        "image": "/team/IMG_20251108_123320 - Shria Biju.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/shria-biju-44ab90289/",
+        "instagram_url": "https://instagram.com/shria_biju"
+      },
+      {
+        "id": 32,
+        "name": "Priyam Kundu",
+        "role": "Member",
+        "image": "/team/priyam - Priyam 23bai10437.jpeg",
+        "linkedin_url": "https://www.linkedin.com/in/priyam-kundu-62834328a/",
+        "instagram_url": "https://instagram.com/impriyam.k"
+      },
+      {
+        "id": 33,
+        "name": "Kriti Kumari",
+        "role": "Member",
+        "image": "/team/Screenshot_20250806_230311_YouCut - Video Editor - KRITI KUMARI 24BAI10817.jpg",
+        "linkedin_url": "https://www.linkedin.com/company/mstc-vit-bhopal/",
+        "instagram_url": "https://instagram.com/K.i.t.s.n.h"
+      },
+      {
+        "id": 34,
+        "name": "Ariha Shree",
+        "role": "Member",
+        "image": "/team/IMG-20251122-WA0027 - ARIHA SHREE 24BEY10126.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/ariha-shree-5505b9335/",
+        "instagram_url": "https://instagram.com/ariha.shree"
+      }
+    ]
   }
-]
+}
