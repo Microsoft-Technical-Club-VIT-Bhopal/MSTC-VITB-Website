@@ -1,6 +1,8 @@
 import { useState } from "react";
 import eventsData from "../data/events.json";
 import EventCard from "../components/EventCard";
+import FunkyBackground from "../components/FunkyBackground";
+import SplitText from "../components/SplitText";
 import clsx from "clsx";
 
 export default function Events() {
@@ -10,66 +12,82 @@ export default function Events() {
     (event) => event.status === filter
   );
 
+  const rotations = ['rotate-1', '-rotate-2', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-3'];
+
   return (
-    <section className="min-h-screen pt-28 pb-20 container mx-auto px-6">
-      {/* Header */}
-      <div className="text-center mb-14">
-        <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 dark:text-white">
-          Events
-        </h1>
-        <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Join us for workshops, hackathons, bootcamps, and tech talks organized by MSTC
-        </p>
-      </div>
-
-      {/* Filter Tabs */}
-      <div className="flex justify-center mb-12">
-        <div className="relative bg-slate-100 dark:bg-white/10 p-1 rounded-full flex w-72">
-          <div
-            className={clsx(
-              "absolute top-1 bottom-1 w-1/2 rounded-full bg-white dark:bg-slate-900 shadow transition-all duration-300",
-              filter === "upcoming" ? "left-1" : "left-1/2"
-            )}
-          />
-
-          <button
-            onClick={() => setFilter("upcoming")}
-            className={clsx(
-              "relative z-10 w-1/2 py-2 text-sm font-semibold",
-              filter === "upcoming"
-                ? "text-slate-900 dark:text-white"
-                : "text-slate-500"
-            )}
-          >
-            Upcoming
-          </button>
-
-          <button
-            onClick={() => setFilter("past")}
-            className={clsx(
-              "relative z-10 w-1/2 py-2 text-sm font-semibold",
-              filter === "past"
-                ? "text-slate-900 dark:text-white"
-                : "text-slate-500"
-            )}
-          >
-            Past
-          </button>
+    <section className="min-h-screen pt-40 pb-20 relative overflow-hidden bg-ms-paper dark:bg-black">
+      <FunkyBackground />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16 relative">
+          <div className="inline-block relative">
+            <h1 className="text-6xl md:text-8xl font-black font-display text-slate-900 dark:text-white mb-4 tracking-tighter transform -rotate-2">
+              <SplitText 
+                text="EVENTS" 
+                className="inline-block"
+                delay={50}
+              />
+            </h1>
+            <div className="absolute -top-6 -right-8 bg-ms-yellow dark:bg-slate-900 text-slate-900 dark:text-white font-bold px-4 py-1 rotate-12 border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] text-sm md:text-base hidden md:block">
+                JOIN US!
+            </div>
+          </div>
+          
+          <p className="mt-6 text-xl md:text-2xl text-slate-700 dark:text-slate-300 font-medium max-w-2xl mx-auto bg-white/80 dark:bg-black/50 backdrop-blur-sm p-4 rounded-xl border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+            Workshops, hackathons, bootcamps, and tech talks.
+          </p>
         </div>
-      </div>
 
-      {/* Events Grid */}
-      {filteredEvents.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+        {/* Filter Tabs - Brutalist Style */}
+        <div className="flex justify-center mb-16">
+          <div className="relative bg-white dark:bg-slate-900 p-2 rounded-2xl flex w-80 border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transform rotate-1">
+            <button
+              onClick={() => setFilter("upcoming")}
+              className={clsx(
+                "w-1/2 py-3 text-lg font-black uppercase tracking-wider rounded-xl transition-all duration-300 border-2",
+                filter === "upcoming"
+                  ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-[4px_4px_0px_#00A4EF] transform -translate-y-1 -rotate-1"
+                  : "bg-transparent text-slate-500 border-transparent hover:bg-slate-100 dark:hover:bg-slate-800"
+              )}
+            >
+              Upcoming
+            </button>
+
+            <button
+              onClick={() => setFilter("past")}
+              className={clsx(
+                "w-1/2 py-3 text-lg font-black uppercase tracking-wider rounded-xl transition-all duration-300 border-2",
+                filter === "past"
+                  ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-[4px_4px_0px_#00A4EF] transform -translate-y-1 rotate-1"
+                  : "bg-transparent text-slate-500 border-transparent hover:bg-slate-100 dark:hover:bg-slate-800"
+              )}
+            >
+              Past
+            </button>
+          </div>
         </div>
-      ) : (
-        <p className="text-center text-slate-500 dark:text-slate-400">
-          No events found.
-        </p>
-      )}
+
+        {/* Events Grid */}
+        {filteredEvents.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
+            {filteredEvents.map((event, index) => (
+              <div key={event.id} className="h-full">
+                <EventCard 
+                    event={event} 
+                    rotate={rotations[index % rotations.length]}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-white/50 dark:bg-slate-900/50 rounded-3xl border-4 border-dashed border-slate-400 dark:border-slate-600 max-w-2xl mx-auto">
+            <p className="text-2xl font-bold text-slate-500 dark:text-slate-400 font-display">
+              No events found. Stay tuned! 🚀
+            </p>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

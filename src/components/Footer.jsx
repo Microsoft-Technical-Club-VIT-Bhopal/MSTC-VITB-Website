@@ -1,130 +1,101 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Github, Instagram, Linkedin, Heart, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 
 export default function Footer() {
   const footerRef = useRef(null);
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".footer-item", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom-=100",
-        }
-      });
-      
-      gsap.from(".big-text", {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 90%",
-        }
-      });
+        // Massive Text Scroll - Smoother & Slower
+        gsap.to(".big-text", {
+            xPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.5 
+            }
+        });
+
     }, footerRef);
     
     return () => ctx.revert();
   }, []);
 
   return (
-    <footer ref={footerRef} className="relative bg-white dark:bg-[#0B1221] text-slate-900 dark:text-white pt-20 pb-6 overflow-hidden mt-20 transition-colors duration-500">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-ms-blue/5 dark:bg-ms-blue/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen"></div>
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-ms-purple/5 dark:bg-ms-purple/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
+    <footer ref={footerRef} className="relative bg-white dark:bg-[#0B1221] text-slate-900 dark:text-white pt-32 pb-12 overflow-hidden mt-20 transition-colors duration-500 rounded-t-[3rem]">
+      {/* Massive Scrolling Text Background */}
+      <div className="absolute top-20 left-0 w-full opacity-5 pointer-events-none select-none">
+          <h1 className="text-[25vw] leading-[0.8] font-black font-display whitespace-nowrap big-text text-slate-900 dark:text-white">
+            MICROSOFT TECHNICAL CLUB
+          </h1>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
-          
-          {/* Brand Column */}
-          <div className="md:col-span-5 footer-item">
-            <Link to="/" className="text-3xl font-bold font-display tracking-tighter flex items-center gap-2 mb-6">
-              <span className="text-slate-900 dark:text-white">Microsoft Technical Club</span>
-            </Link>
-            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-sm mb-8">
-              Empowering the next generation of tech leaders. Join our community to learn, build, and innovate with Microsoft technologies.
-            </p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-24">
+            {/* Brand - Tilted Card */}
+            <div className="bg-ms-blue text-white p-8 rounded-[2rem] border-4 border-slate-900 dark:border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] -rotate-3 hover:rotate-0 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none dark:hover:shadow-none transition-all duration-300 max-w-md cursor-pointer">
+                <Link to="/" className="text-4xl font-black font-display tracking-tighter block mb-4">
+                  MSTC <span className="font-light opacity-80">VITB</span>
+                </Link>
+                <p className="text-lg font-medium opacity-90 leading-relaxed">
+                  We build cool stuff. We break cool stuff. Then we fix it. Join the chaos.
+                </p>
+            </div>
+
+            {/* Links - Scattered Pills - consistent dark shadow & pressed hover */}
+            <div className="flex flex-wrap gap-4 justify-end max-w-lg">
+                <Link to="/about" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200">About</Link>
+                <Link to="/events" className="px-6 py-3 rounded-full bg-ms-neon text-black font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 rotate-2">Events</Link>
+                <Link to="/team" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-ms-blue hover:border-ms-blue hover:text-white transition-all duration-200 hover:-rotate-3">Team</Link>
+                <Link to="/join" className="px-8 py-3 rounded-full bg-ms-neon text-black font-bold text-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 -rotate-2">Join Club</Link>
+            </div>
+        </div>
+
+        {/* Bottom Section - Newsletter & Socials */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 border-t-2 border-slate-900/10 dark:border-white/10 pt-12">
             
+            {/* Tilted Input */}
+            <div className="relative group">
+                <div className="absolute inset-0 bg-ms-violet rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
+                <div className="relative flex items-center bg-white dark:bg-black border-2 border-slate-900 dark:border-white rounded-full p-2 pl-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] rotate-1 focus-within:-rotate-1 transition-transform">
+                    <input 
+                        type="email" 
+                        placeholder="Updates? Yes please." 
+                        className="bg-transparent text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none w-64 font-bold"
+                    />
+                    <button className="bg-slate-900 dark:bg-white text-white dark:text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-ms-blue hover:text-white transition-colors border-2 border-slate-900">
+                        <ArrowUpRight size={20} />
+                    </button>
+                </div>
+            </div>
+
+            {/* Social Icons */}
             <div className="flex gap-4">
                {[
-                 { icon: Linkedin, href: "#" },
-                 { icon: Instagram, href: "#" },
-                 { icon: Github, href: "#" }
+                 { icon: Linkedin, href: "https://www.linkedin.com/groups/17283015/?feedType=highlightedFeedForGroups&highlightedUpdateUrn=urn%3Ali%3AgroupPost%3A17283015-7428341469201002496&q=highlightedFeedForGroups", color: "hover:bg-ms-blue hover:text-white" },
+                 { icon: Instagram, href: "https://www.instagram.com/mstc_vitb/", color: "hover:bg-ms-neon hover:text-black" },
+                 { icon: Github, href: "https://github.com/Microsoft-Technical-Club-VIT-Bhopal", color: "hover:bg-ms-yellow hover:text-black" }
                ].map((Social, index) => (
                  <a 
                    key={index}
                    href={Social.href} 
-                   className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-500 dark:text-white/70 hover:text-white hover:bg-ms-blue hover:dark:text-white hover:dark:bg-white/10 hover:border-ms-blue hover:dark:border-white/30 transition-all duration-300 group"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className={`w-12 h-12 rounded-full border-2 border-slate-900 dark:border-white bg-white dark:bg-slate-900 flex items-center justify-center text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none dark:hover:shadow-none ${Social.color} transition-all duration-200`}
                  >
-                   <Social.icon size={20} className="transform group-hover:scale-110 transition-transform" />
+                   <Social.icon size={20} />
                  </a>
                ))}
             </div>
-          </div>
-          
-          {/* Links Columns */}
-          <div className="md:col-span-2 footer-item">
-            <h4 className="font-bold text-slate-900 dark:text-white mb-6">Explore</h4>
-            <ul className="space-y-4 text-slate-600 dark:text-slate-400">
-              <li><Link to="/about" className="hover:text-ms-blue transition-colors">About Us</Link></li>
-              <li><Link to="/events" className="hover:text-ms-blue transition-colors">Events</Link></li>
-              <li><Link to="/team" className="hover:text-ms-blue transition-colors">Team</Link></li>
-              <li><Link to="/join" className="hover:text-ms-blue transition-colors">Join Club</Link></li>
-            </ul>
-          </div>
-          
-          <div className="md:col-span-2 footer-item">
-            <h4 className="font-bold text-slate-900 dark:text-white mb-6">Legal</h4>
-            <ul className="space-y-4 text-slate-600 dark:text-slate-400">
-              <li><a href="#" className="hover:text-ms-blue transition-colors">Privacy</a></li>
-              <li><a href="#" className="hover:text-ms-blue transition-colors">Terms</a></li>
-              <li><a href="#" className="hover:text-ms-blue transition-colors">Code of Conduct</a></li>
-            </ul>
-          </div>
-          
-          {/* CTA Column */}
-          <div className="md:col-span-3 footer-item">
-            <h4 className="font-bold text-slate-900 dark:text-white mb-6">Stay Updated</h4>
-             <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-sm transition-colors">
-                <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">Get the latest updates on hackathons and workshops.</p>
-                <div className="flex gap-2">
-                   <input type="email" placeholder="Email address" className="bg-transparent border-b border-slate-300 dark:border-white/20 w-full py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-ms-blue transition-colors placeholder:text-slate-400" />
-                   <button className="text-ms-blue hover:text-ms-obsidian dark:hover:text-white transition-colors"><ArrowUpRight /></button>
-                </div>
-             </div>
-          </div>
-        </div>
 
-        {/* Big Text */}
-        <div className="border-t border-slate-200 dark:border-white/10 pt-8 pb-4">
-           <h1 className="text-[12vw] leading-none font-bold font-display text-transparent bg-clip-text bg-gradient-to-b from-ms-blue/20 to-ms-blue/0 dark:from-white/10 dark:to-white/0 text-center select-none pointer-events-none big-text">
-             MICROSOFT
-           </h1>
-
-           <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 mt-4 footer-item gap-3">
-              <p>&copy; {new Date().getFullYear()} Microsoft Technical Club. All rights reserved.</p>
-              <div className="flex items-center gap-4">
-                <Link to="/privacy" className="hover:text-ms-blue">Privacy</Link>
-                <Link to="/terms" className="hover:text-ms-blue">Terms</Link>
-                <button onClick={() => { try { if(window.gtag) window.gtag('click_feedback'); else console.log('feedback'); } catch(e){}; alert('Thanks for the feedback!'); }} className="hover:text-ms-blue">Send Feedback</button>
-              </div>
-              <p className="flex items-center gap-1">Designed with <Heart size={12} className="text-ms-blue fill-current" /> by Tech Team</p>
-           </div>
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center gap-1">
+                Made with <Heart size={14} className="text-ms-neon fill-ms-neon animate-pulse" /> by Tech Team
+            </p>
         </div>
       </div>
     </footer>

@@ -1,0 +1,86 @@
+import React from 'react';
+import { ArrowUpRight, MapPin, Calendar, Clock } from 'lucide-react';
+
+const events = [
+    {
+        title: "Code Garuda 3.0",
+        date: "Oct 12",
+        time: "10:00 AM",
+        location: "Advitya Hall",
+        rotate: "rotate-2",
+        color: "bg-ms-blue"
+    },
+    {
+        title: "Vainateya 2.0",
+        date: "Nov 05",
+        time: "2:00 PM",
+        location: "Robotics Lab",
+        rotate: "-rotate-3",
+        color: "bg-ms-violet"
+    },
+    {
+        title: "Azure Cloud Summit",
+        date: "Dec 01",
+        time: "9:00 AM",
+        location: "Auditorium",
+        rotate: "rotate-1",
+        color: "bg-ms-neon"
+    },
+    {
+        title: "AI/ML Bootcamp",
+        date: "Jan 15",
+        time: "4:00 PM",
+        location: "Online",
+        rotate: "-rotate-2",
+        color: "bg-pink-500"
+    }
+];
+
+const EventCard = ({ event }) => (
+    <div className={`flex-shrink-0 w-80 md:w-96 p-6 mx-6 rounded-[2rem] bg-white dark:bg-ms-obsidian border-2 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 cursor-pointer ${event.rotate} hover:rotate-0 group`}>
+        <div className="flex justify-between items-start mb-6">
+            <div className={`px-3 py-1 rounded-full border-2 border-slate-900 dark:border-white text-xs font-black uppercase tracking-wider ${event.color} text-white`}>
+                {event.date}
+            </div>
+            <ArrowUpRight className="text-slate-900 dark:text-white group-hover:rotate-45 transition-transform" />
+        </div>
+
+        <h3 className="text-3xl font-display font-black leading-tight text-slate-900 dark:text-white mb-4 line-clamp-2">
+            {event.title}
+        </h3>
+
+        <div className="flex flex-col gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+            <div className="flex items-center gap-2">
+                <Clock size={16} />
+                {event.time}
+            </div>
+            <div className="flex items-center gap-2">
+                <MapPin size={16} />
+                {event.location}
+            </div>
+        </div>
+    </div>
+);
+
+const EventsMarquee = () => {
+    return (
+        <section className="relative py-24 overflow-hidden bg-ms-neon/5 dark:bg-ms-blue/5 border-y-4 border-slate-900 dark:border-white">
+            {/* Tilted "WARNING TAPE" Background */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none select-none overflow-hidden">
+                <h1 className="text-[20vw] font-black text-slate-900 dark:text-white -rotate-12 whitespace-nowrap">
+                    UPCOMING EVENTS UPCOMING EVENTS
+                </h1>
+            </div>
+
+            <div className="relative z-10">
+                <div className="flex animate-ticker w-max hover:[animation-play-state:paused]">
+                    {[...events, ...events, ...events].map((event, i) => (
+                        <EventCard key={i} event={event} />
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default EventsMarquee;

@@ -35,6 +35,14 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
         }
+      },
+      boxShadow: {
+        'icon-blue': '4px 4px 0 0 rgba(0, 164, 239, 0.85)',
+        'icon-green': '4px 4px 0 0 rgba(34, 197, 94, 0.85)',
+        'icon-orange': '4px 4px 0 0 rgba(249, 115, 22, 0.85)',
+        'icon-violet': '4px 4px 0 0 rgba(127, 0, 255, 0.85)',
+        'icon-neon': '4px 4px 0 0 rgba(0, 234, 255, 0.85)',
+        'icon-purple': '4px 4px 0 0 rgba(168, 85, 247, 0.85)',
       }
     },
   },

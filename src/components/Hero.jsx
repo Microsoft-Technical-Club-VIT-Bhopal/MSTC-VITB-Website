@@ -1,114 +1,136 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowRight, ChevronRight, Users, Code, Trophy } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
 import SplitText from './SplitText';
+import FunkyBackground from './FunkyBackground';
+import { ArrowRight, Sparkles, Code, Globe, ChevronDown } from 'lucide-react';
+import TicTacToe from './TicTacToe';
+import ConnectDots from './ConnectDots';
 
 const Hero = () => {
-    const heroTextRef = useRef(null);
-    const cardsRef = useRef(null);
-    const ctaRef = useRef(null);
+    const heroRef = useRef(null);
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
-        // Sync with preloader completion
-        const timer = setTimeout(() => setIsReady(true), 3500);
-        
-        const tl = gsap.timeline({ delay: 4 }); // Delay rest of hero content slightly after title starts
-
-        tl.fromTo(cardsRef.current.children,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" },
-            "-=0.5"
-        )
-        .fromTo(ctaRef.current,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-            "-=0.5"
-        );
-        return () => {
-            clearTimeout(timer);
-            if (tl) tl.kill();
-        };
+        setIsReady(true);
     }, []);
 
+    useGSAP(() => {
+        if (!isReady) return;
+
+        const tl = gsap.timeline();
+
+        // Staggered Text Reveal
+        tl.from(".hero-word", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "back.out(1.7)",
+        })
+        .from(".hero-desc", {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            ease: "power2.out"
+        }, "-=0.5")
+         .fromTo(".cta-btn", 
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+            "-=0.5"
+         );
+
+    }, { scope: heroRef, dependencies: [isReady] });
+
     const features = [
-        {
-            icon: <Users size={32} className="text-ms-blue" />,
-            title: "Join",
-            desc: "Become part of a thriving community of tech enthusiasts and innovators."
-        },
-        {
-            icon: <Code size={32} className="text-ms-violet" />,
-            title: "Learn",
-            desc: "Master industry-grade skills through hands-on workshops and expert guidance."
-        },
-        {
-            icon: <Trophy size={32} className="text-ms-neon" />,
-            title: "Participate",
-            desc: "Compete in high-stakes hackathons and build projects that matter."
-        }
+        { icon: Globe, title: "Join", desc: "A thriving community.", rotate: "rotate-2", color: "bg-ms-blue" },
+        { icon: Code, title: "Learn", desc: "Industry-standard skills.", rotate: "-rotate-1", color: "bg-ms-violet" },
+        { icon: Sparkles, title: "Win", desc: "High-stakes hackathons.", rotate: "rotate-3", color: "bg-ms-neon" },
     ];
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-32 lg:pt-40 bg-gray-50 dark:bg-ms-obsidian transition-colors duration-500">
-            {/* Abstract Background Elements (Replaces 3D) */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-ms-blue/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-pulse-slow" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-ms-violet/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-pulse-slow delay-1000" />
-            </div>
-
-            {/* Content Container */}
-            <div className="relative z-10 w-full max-w-7xl flex flex-col items-center text-center">
+        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-40">
+            <FunkyBackground />
+            
+            <div className="relative z-10 w-full max-w-7xl flex flex-col items-center text-center px-4">
                 
-                {/* Main Headline */}
-                <div className="relative mb-16 mt-10">
-                    <SplitText
-                        text="Connect. Create. Collaborate."
-                        className="text-5xl md:text-8xl font-display font-black leading-tight tracking-tighter text-gray-900 dark:text-gray-100 transition-colors duration-500 cursor-default select-none pb-4"
-                        delay={40}
-                        duration={1.2}
-                        ease="power4.out"
-                        splitType="chars"
-                        from={{ opacity: 0, y: 80, rotateX: 30, filter: 'blur(10px)' }}
-                        to={{ opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)' }}
-                        trigger={isReady}
-                    />
-                    <div ref={heroTextRef}>
-                        <p className="mt-4 text-xl md:text-2xl text-gray-600 dark:text-ms-dim max-w-2xl mx-auto font-light">
-                        Empowering the next generation of <span className="text-ms-blue font-medium">visionaries</span> to turn ideas into reality.
+                {/* GIANT Funky Headline */}
+                <div className="relative mb-6 flex flex-col items-center justify-center pointer-events-none select-none">
+                    <div className="relative z-10 mix-blend-lighten dark:mix-blend-normal">
+                         <SplitText
+                             text="CODE."
+                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-slate-900 dark:text-white hero-word"
+                            delay={10}
+                            duration={0.8}
+                            ease="back.out"
+                            trigger={isReady}
+                        />
+                    </div>
+                    <div className="relative z-20 -mt-[2vw] mix-blend-normal">
+                        <SplitText
+                            text="CRAFT."
+                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-ms-blue via-ms-violet to-ms-blue hero-word"
+                            delay={50}
+                             duration={0.8}
+                             ease="back.out"
+                             trigger={isReady}
+                        />
+                    </div>
+                     <div className="relative z-10 -mt-[2vw] mix-blend-lighten dark:mix-blend-normal">
+                         <SplitText
+                            text="CHAOS."
+                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-slate-900 dark:text-white hero-word"
+                            delay={90}
+                             duration={0.8}
+                             ease="back.out"
+                             trigger={isReady}
+                        />
+                    </div>
+                </div>
+
+                {/* Funky Description Box */}
+                <div className="hero-desc backdrop-blur-md bg-white/30 dark:bg-black/30 border-2 border-slate-900 dark:border-white/20 p-6 rounded-[2rem] max-w-2xl mb-8 transform -rotate-1 shadow-lg">
+                    <p className="text-xl md:text-2xl text-slate-900 dark:text-white font-medium leading-relaxed">
+                        Empowering the next generation of <span className="font-black text-ms-blue">visionaries</span>.
                     </p>
                 </div>
-            </div>
 
-                {/* Feature Cards */}
-                <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mb-12">
+                {/* EXTRA FUNKY Cards - Z-50 FORCED */}
+                <div className="relative z-50 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mb-12 px-4">
                     {features.map((feature, idx) => (
-                        <div key={idx} className="group p-8 rounded-3xl bg-white/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm hover:bg-white dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
-                            <div className="mb-4 bg-gray-100 dark:bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
-                            <p className="text-gray-600 dark:text-ms-dim leading-relaxed">
-                                {feature.desc}
-                            </p>
+                        <div 
+                            key={idx} 
+                            className={`funky-card group p-6 rounded-tl-[2.5rem] rounded-br-[2.5rem] rounded-tr-lg rounded-bl-lg bg-white dark:bg-ms-obsidian border-4 border-slate-900 dark:border-white transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(15,23,42,0.2)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-[10px_10px_0px_0px_#00A4EF] dark:hover:shadow-[10px_10px_0px_0px_#00A4EF] hover:-translate-y-2 hover:rotate-0 cursor-pointer overflow-hidden relative ${feature.rotate}`}
+                        >
+                            <div className={`absolute top-0 right-0 w-16 h-16 ${feature.color} opacity-20 rounded-bl-[2.5rem] transition-all duration-300 group-hover:scale-[10] group-hover:opacity-10`} />
+                            
+                            <feature.icon size={40} className="mb-3 text-slate-900 dark:text-white relative z-10" />
+                            <h3 className="text-xl font-black font-display text-slate-900 dark:text-white mb-2 relative z-10">{feature.title}</h3>
+                            <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider relative z-10">{feature.desc}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* CTAs */}
-                <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 items-center mb-12">
-                    <button className="group relative px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-black font-bold text-lg rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-2xl">
-                        <span className="relative z-10 flex items-center gap-2">
-                            Join the Club <ChevronRight size={20} />
-                        </span>
+                {/* Bouncy CTAs */}
+                <div className="flex flex-col sm:flex-row gap-6 mt-8">
+                    <button className="cta-btn px-8 py-4 bg-ms-blue text-white font-black text-xl rounded-full shadow-[0_10px_20px_rgba(0,164,239,0.3)] hover:shadow-[0_15px_30px_rgba(0,164,239,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center gap-2 group">
+                        Join the Club <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </button>
-
-                    <button className="group flex items-center gap-2 text-gray-900 dark:text-ms-white font-medium text-lg px-8 py-4 rounded-full border border-gray-300 dark:border-white/10 hover:border-gray-900 dark:hover:border-white/30 hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
-                        Explore Events 
-                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                    <button className="cta-btn px-8 py-4 bg-transparent border-4 border-slate-900 dark:border-white text-slate-900 dark:text-white font-black text-xl rounded-full hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-110 active:scale-95 transition-all duration-300">
+                        Explore Events
                     </button>
                 </div>
+
             </div>
+            
+            {/* MINI GAMES - VISIBLE ON DESKTOP (LG+) */}
+            <div className="hidden lg:block absolute left-[5%] top-[12%] z-20 transform -rotate-6 scale-75 xl:scale-100">
+                <TicTacToe />
+            </div>
+            <div className="hidden lg:block absolute right-[5%] top-[18%] z-20 transform rotate-6 scale-75 xl:scale-90">
+                <ConnectDots />
+            </div>
+
         </section>
     );
 };
