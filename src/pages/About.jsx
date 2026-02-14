@@ -103,14 +103,13 @@ export default function About() {
         }
       `}</style>
       
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
+      <section ref={heroRef} className="relative z-10 py-32 sm:py-40 lg:py-0 lg:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
         <div className="container mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
             {/* Text Content */}
-            <div className="flex-1 space-y-4 sm:space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1 lg:pl-16 xl:pl-24">
+            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-center lg:text-left order-1">
               <div className="space-y-4 about-reveal-item">
-                <div className="inline-block transform -rotate-2">
+                <div className="inline-block transform lg:-rotate-2">
                     <SplitText
                     text="Innovate. Create. Inspire."
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black font-display leading-none tracking-tighter text-slate-900 dark:text-white break-words"
@@ -120,7 +119,7 @@ export default function About() {
                 </div>
                 <div className="h-2 w-32 bg-ms-blue rounded-full mx-auto lg:mx-0 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
               </div>
-              <div ref={heroTextRef} className="space-y-3 sm:space-y-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm p-6 rounded-2xl border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transform rotate-1 about-reveal-item">
+              <div ref={heroTextRef} className="space-y-3 sm:space-y-4 bg-white/80 dark:bg-black/80 backdrop-blur-sm p-6 rounded-2xl border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transform lg:rotate-1 about-reveal-item">
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-900 dark:text-white max-w-full lg:max-w-2xl font-bold leading-relaxed break-words">
                   We are the <span className="text-ms-blue font-black underline decoration-4 underline-offset-4 decoration-ms-yellow">Connectors</span> a vibrant community bridging students, technology, and opportunity to forge tomorrow's solutions, today.
                 </p>
@@ -152,8 +151,8 @@ export default function About() {
             </div>
             
             {/* Enhanced Vision Card */}
-            <div ref={heroCardsRef} className="flex-1 flex items-center justify-center order-1 lg:order-2 about-reveal-item">
-              <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-lg xl:max-w-xl transform rotate-2 hover:rotate-0 transition-transform duration-300 group">
+            <div ref={heroCardsRef} className="w-full lg:w-5/12 flex items-center justify-center order-2 about-reveal-item">
+              <div className="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-lg transform lg:rotate-2 hover:rotate-0 transition-transform duration-300 group">
                 <div className="relative h-72 sm:h-80 lg:h-96 xl:h-[28rem] rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border-4 border-slate-900 dark:border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
                   {/* Decorative BG & Scanner Line */}
                   <div className="absolute inset-0 bg-ms-paper dark:bg-slate-800 opacity-50 pattern-grid-lg"></div>

@@ -25,11 +25,11 @@ export default function EventDetail() {
     );
   }
 
-  // ✅ Safe image array
-  const images = [
+  // ✅ Ensure unique images to prevent phantom skips
+  const images = Array.from(new Set([
     event.cover,
     ...(event.gallery || [])
-  ].filter(Boolean);
+  ])).filter(Boolean);
 
   const nextSlide = () => {
     setCurrent(current === images.length - 1 ? 0 : current + 1);
@@ -90,16 +90,14 @@ export default function EventDetail() {
                 {images.length > 1 && (
                     <>
                         <button 
-                            onPointerDown={(e) => { e.stopPropagation(); prevSlide(); }}
-                            onClick={(e) => { e.stopPropagation(); prevSlide(); }} 
+                            onClick={(e) => { e.stopPropagation(); e.preventDefault(); prevSlide(); }} 
                             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-4 border-4 border-slate-900 shadow-[4px_4px_0px_#000] active:translate-y-[-48%] active:shadow-none transition-all z-20 rounded-full"
                             aria-label="Previous Image"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
                         <button 
-                            onPointerDown={(e) => { e.stopPropagation(); nextSlide(); }}
-                            onClick={(e) => { e.stopPropagation(); nextSlide(); }} 
+                            onClick={(e) => { e.stopPropagation(); e.preventDefault(); nextSlide(); }} 
                             className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-4 border-4 border-slate-900 shadow-[4px_4px_0px_#000] active:translate-y-[-48%] active:shadow-none transition-all z-20 rounded-full"
                             aria-label="Next Image"
                         >
@@ -114,8 +112,8 @@ export default function EventDetail() {
                         {images.map((_, idx) => (
                             <button
                                 key={idx}
-                                onPointerDown={(e) => { e.stopPropagation(); setCurrent(idx); }}
-                                onClick={(e) => { e.stopPropagation(); setCurrent(idx); }}
+                                onPointerDown={(e) => e.stopPropagation()} 
+                                onClick={(e) => { e.stopPropagation(); e.preventDefault(); setCurrent(idx); }}
                                 className={`w-3 h-3 rounded-full transition-all ${current === idx ? "bg-ms-yellow scale-125 border-2 border-black" : "bg-white/50 hover:bg-white"}`}
                                 aria-label={`Go to slide ${idx + 1}`}
                             />
