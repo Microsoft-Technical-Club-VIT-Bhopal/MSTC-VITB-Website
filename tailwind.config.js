@@ -14,8 +14,11 @@ export default {
         'ms-violet': '#7F00FF', // Electric Violet
         'ms-white': '#F0F4F8', // Cool White
         'ms-dim': '#888888', // Dimmed Grey
-        'ms-dark': '#0f172a', // Keeping for backward compatibility if needed, but obsidian is primary
+        'ms-dark': '#0f172a',
         'ms-neon': '#00eaff',
+        'ms-yellow': '#ffb900',
+        'ms-orange': '#f25022',
+        'ms-green': '#7fba00',
       },
       fontFamily: {
         'display': ['"Space Grotesk"', 'sans-serif'],

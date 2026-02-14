@@ -187,31 +187,30 @@ const Navbar = () => {
 
             {/* Mobile Menu Content */}
             <div className={`
-                absolute top-20 left-4 right-4 bg-white dark:bg-[#0a0a0a] border-2 border-ms-blue rounded-2xl p-6 md:hidden flex flex-col gap-4 shadow-[0_0_30px_rgba(0,164,239,0.3)] z-50 transition-all duration-500 ease-elastic
+                absolute top-24 left-4 right-4 bg-white dark:bg-slate-900 border-4 border-slate-900 dark:border-white p-6 md:hidden flex flex-col gap-6 shadow-[8px_8px_0px_#00A4EF] dark:shadow-[8px_8px_0px_#ffffff] z-50 transition-all duration-500 transform rotate-1 rounded-2xl
                 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-10 opacity-0 scale-95 pointer-events-none'}
             `}>
-                <div className="flex justify-between items-center pb-4 border-b border-gray-100 dark:border-white/10">
-                    <span className="text-sm font-mono text-ms-dim">NAVIGATION_V2.0</span>
+                <div className="flex justify-between items-center pb-4 border-b-4 border-slate-900 dark:border-white">
+                    <span className="text-xs font-black font-mono text-ms-blue uppercase tracking-tighter">NAV_SYSTEM v2.0</span>
                     <button 
                         onClick={toggleTheme}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-2 border-slate-900 dark:border-white shadow-[3px_3px_0px_#00A4EF] text-xs font-black uppercase tracking-wider active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all"
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ffb900] text-black border-2 border-black dark:border-white shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] text-[10px] font-black uppercase active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all z-20 flex-shrink-0"
                     >
-                        {isDark ? <><Sun size={14} className="animate-spin-slow" /> Light</> : <><Moon size={14} /> Dark</>}
+                        {isDark ? <><Sun size={12} /> LIGHT_MODE</> : <><Moon size={12} /> DARK_MODE</>}
                     </button>
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                     {navLinks.map((link, i) => (
                         <NavLink 
                             key={link.name} 
                             to={link.path}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            style={{ transitionDelay: `${i * 50}ms` }}
                             className={({ isActive }) => `
-                                text-xl font-bold p-4 rounded-xl transition-all border-2
+                                text-xl font-black p-4 transition-all border-4 border-slate-900 dark:border-white rounded-full
                                 ${isActive 
-                                    ? 'bg-ms-blue/10 border-ms-blue text-ms-blue' 
-                                    : 'border-transparent hover:bg-white/5 hover:translate-x-2 text-gray-600 dark:text-gray-300'}
+                                    ? 'bg-ms-blue text-white shadow-[4px_4px_2px_#7F00FF] -rotate-1 translate-x-1' 
+                                    : `bg-white dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-ms-blue/10 ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 hover:translate-x-1 hover:shadow-[4px_4px_2px_#00A4EF] shadow-none`}
                             `}
                         >
                             {link.name}
@@ -219,8 +218,12 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                <NavLink to="/join" className="w-full py-4 rounded-xl bg-gradient-to-r from-ms-blue via-ms-purple to-ms-neon text-white font-black text-center text-lg tracking-widest shadow-lg shadow-ms-blue/20 hover:scale-[1.02] transition-transform active:scale-95">
-                    JOIN THE CLUB
+                <NavLink 
+                    to="/join" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full py-4 bg-ms-neon text-slate-900 font-black text-center text-xl tracking-tighter border-4 border-slate-900 shadow-[6px_6px_2px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95 uppercase rounded-full"
+                >
+                    🚀 JOIN_NOW
                 </NavLink>
             </div>
         </nav>

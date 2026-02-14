@@ -90,14 +90,18 @@ export default function EventDetail() {
                 {images.length > 1 && (
                     <>
                         <button 
-                            onClick={prevSlide} 
-                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-3 border-4 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-none transition-all z-20 rounded-xl"
+                            onPointerDown={(e) => { e.stopPropagation(); prevSlide(); }}
+                            onClick={(e) => { e.stopPropagation(); prevSlide(); }} 
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-4 border-4 border-slate-900 shadow-[4px_4px_0px_#000] active:translate-y-[-48%] active:shadow-none transition-all z-20 rounded-full"
+                            aria-label="Previous Image"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
                         <button 
-                            onClick={nextSlide} 
-                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-3 border-4 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-none transition-all z-20 rounded-xl"
+                            onPointerDown={(e) => { e.stopPropagation(); nextSlide(); }}
+                            onClick={(e) => { e.stopPropagation(); nextSlide(); }} 
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-slate-900 p-4 border-4 border-slate-900 shadow-[4px_4px_0px_#000] active:translate-y-[-48%] active:shadow-none transition-all z-20 rounded-full"
+                            aria-label="Next Image"
                         >
                             <ChevronRight className="w-6 h-6" />
                         </button>
@@ -106,12 +110,14 @@ export default function EventDetail() {
                 
                 {/* Slide Indicators */}
                 {images.length > 1 && (
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-white/50">
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border-2 border-white/50 shadow-[4px_4px_0px_rgba(255,255,255,0.2)]">
                         {images.map((_, idx) => (
                             <button
                                 key={idx}
-                                onClick={() => setCurrent(idx)}
-                                className={`w-3 h-3 rounded-full transition-all ${current === idx ? "bg-ms-yellow scale-125 border-2 border-black" : "bg-white hover:bg-slate-200"}`}
+                                onPointerDown={(e) => { e.stopPropagation(); setCurrent(idx); }}
+                                onClick={(e) => { e.stopPropagation(); setCurrent(idx); }}
+                                className={`w-3 h-3 rounded-full transition-all ${current === idx ? "bg-ms-yellow scale-125 border-2 border-black" : "bg-white/50 hover:bg-white"}`}
+                                aria-label={`Go to slide ${idx + 1}`}
                             />
                         ))}
                     </div>
