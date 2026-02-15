@@ -141,7 +141,7 @@ const EventsScroll = () => {
             </div>
 
             {/* Mouse Scroll Animation - Dedicated Mobile Position (In the black space) */}
-            <div className="absolute top-[28vh] left-1/2 -translate-x-1/2 flex md:hidden flex-col items-center gap-2 z-20 pointer-events-auto cursor-help">
+            <div className="absolute top-[20vh] left-1/2 -translate-x-1/2 flex md:hidden flex-col items-center gap-2 z-20 pointer-events-auto cursor-help">
                <div className="w-6 h-10 border-2 border-slate-900 dark:border-white rounded-full relative flex justify-center p-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
                    <div className="w-1.5 h-1.5 bg-ms-blue dark:bg-ms-neon rounded-full animate-scroll-dot" />
                </div>
