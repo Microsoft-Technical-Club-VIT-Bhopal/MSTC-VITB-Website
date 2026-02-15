@@ -72,7 +72,7 @@ const Hero = () => {
                 {/* Funky Description Box */}
                 <div className="hero-desc backdrop-blur-md bg-white/30 dark:bg-black/30 border-2 border-slate-900 dark:border-white/20 p-6 rounded-[2rem] max-w-2xl mb-8 transform -rotate-1 shadow-lg">
                     <p className="text-xl md:text-3xl text-slate-900 dark:text-white font-black leading-relaxed">
-                        <span className="text-ms-blue">Technical</span> <span className="text-ms-orange">club</span> <span className="text-ms-green">-VIT</span> <span className="text-ms-yellow">BHOPAL</span>
+                        <span className="text-ms-blue">Technical</span> <span className="text-ms-orange">Club</span> <span className="text-ms-green">-VIT</span> <span className="text-ms-yellow">BHOPAL</span>
                     </p>
                 </div>
 
