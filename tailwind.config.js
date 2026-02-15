@@ -35,6 +35,7 @@ export default {
         'spin-slow': 'spin 8s linear infinite',
         'bounce-short': 'bounce-short 0.5s ease-out',
         'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+        'gradient-x': 'gradient-x 3s ease infinite',
       },
       keyframes: {
         ticker: {
@@ -50,7 +51,17 @@ export default {
           '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
           '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
           '40%, 60%': { transform: 'translate3d(4px, 0, 0)' },
-        }
+        },
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
       },
       boxShadow: {
         'icon-blue': '4px 4px 0 0 rgba(0, 164, 239, 0.85)',

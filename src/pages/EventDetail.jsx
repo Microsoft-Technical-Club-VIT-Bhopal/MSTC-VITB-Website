@@ -68,7 +68,7 @@ export default function EventDetail() {
                     <img 
                         src={images[current]} 
                         alt={event.title} 
-                        className="w-full h-full object-cover object-[center_10%] transition-transform duration-500"
+                        className="w-full h-full object-cover object-[center_1%] transition-transform duration-500"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold text-xl">
@@ -127,13 +127,13 @@ export default function EventDetail() {
                 {/* Header Info */}
                 <div className="space-y-6">
                     <div className="flex flex-wrap gap-3 items-center text-sm font-bold text-slate-900 dark:text-white">
-                        <span className="flex items-center gap-2 bg-ms-blue/10 dark:bg-ms-blue/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform -rotate-1">
+                        <span className="flex items-center gap-2 bg-ms-blue/10 dark:bg-ms-blue/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform -rotate-1 transition-all hover:shadow-none dark:hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             <Calendar className="w-4 h-4" /> {event.date}
                         </span>
-                        <span className="flex items-center gap-2 bg-ms-purple/10 dark:bg-ms-purple/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform rotate-1">
+                        <span className="flex items-center gap-2 bg-ms-purple/10 dark:bg-ms-purple/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform rotate-1 transition-all hover:shadow-none dark:hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             <Clock className="w-4 h-4" /> {event.time || "TBA"}
                         </span>
-                        <span className="flex items-center gap-2 bg-ms-green/10 dark:bg-ms-green/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform -rotate-1">
+                        <span className="flex items-center gap-2 bg-ms-green/10 dark:bg-ms-green/20 px-3 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transform -rotate-1 transition-all hover:shadow-none dark:hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             {event.mode === "Online" ? <Globe className="w-4 h-4" /> : <MapPin className="w-4 h-4" />} {event.location}
                         </span>
                     </div>
@@ -145,7 +145,7 @@ export default function EventDetail() {
                         <img 
                             src="/QR%20Code.svg" 
                             alt="Scan Code" 
-                            className="w-24 h-24 md:w-40 md:h-40 lg:w-48 lg:h-48 border-4 border-slate-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] bg-white p-2"
+                            className="w-24 h-24 md:w-40 md:h-40 lg:w-48 lg:h-48 border-4 border-slate-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_#00A4EF] bg-white p-2 transition-transform duration-300 hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]"
                         />
                     </div>
                 </div>

@@ -77,10 +77,10 @@ export default function Footer() {
 
             {/* Links - Scattered Pills - consistent dark shadow & pressed hover */}
             <div className="flex flex-wrap gap-4 justify-center md:justify-end max-w-lg">
-                <Link to="/about" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200">About</Link>
-                <Link to="/events" className="px-6 py-3 rounded-full bg-ms-neon text-black font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 rotate-2">Events</Link>
-                <Link to="/team" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.05] transition-all duration-200 hover:-rotate-3">Team</Link>
-                <Link to="/join" className="px-8 py-3 rounded-full bg-ms-neon text-black font-bold text-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 -rotate-2">Join Club</Link>
+                <Link to="/about" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-ms-orange text-black dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200">About</Link>
+                <Link to="/events" className="px-6 py-3 rounded-full bg-ms-green text-white dark:text-black font-bold border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 rotate-2">Events</Link>
+                <Link to="/team" className="px-6 py-3 rounded-full border-2 border-slate-900 dark:border-white font-bold bg-ms-blue text-black dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.05] transition-all duration-200 hover:-rotate-3">Team</Link>
+                <Link to="/join" className="  px-8 py-3 rounded-full bg-ms-yellow font-bold text-lg border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.35)] text-white dark:text-black dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none dark:hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:scale-[1.02] transition-all duration-200 -rotate-2">Join Club</Link>
             </div>
         </div>
 
@@ -133,8 +133,47 @@ export default function Footer() {
                ))}
             </div>
 
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center gap-1">
-                Made with <Heart size={14} className="text-ms-neon fill-ms-neon animate-pulse" /> by Tech Team
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center gap-1 relative">
+                Made with 
+                <button 
+                    onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+
+                        for (let i = 0; i < 12; i++) {
+                            const heart = document.createElement('div');
+                            heart.innerHTML = '❤️';
+                            heart.style.position = 'fixed';
+                            heart.style.left = `${centerX}px`;
+                            heart.style.top = `${centerY}px`;
+                            heart.style.fontSize = `${Math.random() * 10 + 10}px`;
+                            heart.style.pointerEvents = 'none';
+                            heart.style.zIndex = '9999';
+                            document.body.appendChild(heart);
+
+                            const angle = Math.random() * Math.PI * 2;
+                            const velocity = Math.random() * 80 + 20;
+
+                            gsap.to(heart, {
+                                x: Math.cos(angle) * velocity,
+                                y: Math.sin(angle) * velocity - 50,
+                                opacity: 0,
+                                duration: 1,
+                                ease: "power1.out",
+                                onComplete: () => heart.remove()
+                            });
+                        }
+                    }}
+                    className="hover:scale-125 transition-transform cursor-pointer active:scale-90"
+                >
+                    <Heart size={14} className="text-ms-neon fill-ms-neon animate-pulse" />
+                </button> 
+                by 
+                <span className="font-display font-black text-base tracking-tighter group cursor-default ml-1 transition-transform hover:scale-110 hover:-rotate-2 inline-block">
+                    <span className="text-ms-blue drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:drop-shadow-[0_0_5px_rgba(0,164,239,0.5)]">TECH</span>
+                    <span className="text-ms-orange drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:drop-shadow-[0_0_5px_rgba(255,185,0,0.5)] ml-1">TEAM</span>
+                </span>
             </p>
         </div>
       </div>

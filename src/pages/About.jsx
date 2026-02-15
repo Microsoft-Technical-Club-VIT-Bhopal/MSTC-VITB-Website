@@ -423,7 +423,7 @@ export default function About() {
                 {
                   icon: "/svg/calender.svg",
                   title: 'Founded',
-                  desc: 'Microsoft Club was born from a passion for technology and community, starting with just 15 passionate students.',
+                  desc: 'Microsoft Club was born from a passion for technology and community, founded by Dr. S. Hariharasitaraman',
                   year: '2021',
                   highlight: 'The Beginning',
                   color: 'bg-ms-blue',
@@ -441,7 +441,7 @@ export default function About() {
                 {
                   icon: "/svg/bulb.svg",
                   title: 'Workshops & Growth',
-                  desc: 'Hosted 50+ workshops on cutting-edge technologies, growing a vibrant and diverse community of 300+ members.',
+                  desc: 'Hosted several workshops on cutting-edge technologies, growing a vibrant and diverse community of 300+ members.',
                   year: '2023',
                   highlight: 'Expanding Horizons',
                   color: 'bg-ms-orange',
