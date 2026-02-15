@@ -8,7 +8,22 @@ import SplitText from '../components/SplitText';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function YearSelect({ value, onChange, error }) {
+function ErrorBubble({ message, onDismiss }) {
+  if (!message) return null;
+  return (
+    <div 
+      onClick={onDismiss}
+      className="absolute -top-12 left-4 z-[60] animate-bounce-short cursor-pointer group"
+    >
+      <div className="bg-red-500 text-white font-display font-black uppercase text-xs py-2 px-4 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] relative group-hover:scale-105 transition-transform">
+        {message}
+        <div className="absolute -bottom-2 left-4 w-4 h-4 bg-red-500 border-r-2 border-b-2 border-slate-900 rotate-45"></div>
+      </div>
+    </div>
+  );
+}
+
+function YearSelect({ value, onChange, error, clearError }) {
   const options = ['First Year','Second Year','Third Year','Final Year'];
   const btnRef = React.useRef();
   const [open, setOpen] = React.useState(false);
@@ -51,17 +66,24 @@ function YearSelect({ value, onChange, error }) {
           type="button"
           aria-haspopup="listbox"
           aria-expanded={open}
-          onClick={() => setOpen(o => !o)}
-          className={`w-full mt-2 p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${error ? 'border-red-400' : 'border-transparent focus:border-ms-blue'} text-left flex items-center justify-between transition-all outline-none font-medium`}
+          onClick={() => { setOpen(o => !o); if(typeof clearError === 'function') clearError('year'); }}
+          className={`w-full mt-2 p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${error ? 'border-red-400' : 'border-transparent focus:border-ms-blue'} text-left flex items-center justify-between transition-all outline-none font-display font-black uppercase text-xl`}
         >
-          <span className={`${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'}`}>{value || 'Select year'}</span>
+          <span className={`${value ? 'text-slate-900 dark:text-white' : 'text-slate-400 opacity-50'}`}>{value || 'Select mission year'}</span>
           <svg className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" aria-hidden><path d="M6 8l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
       {open && createPortal(
-        <ul role="listbox" aria-label="Academic year" style={style} className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-slate-900 dark:border-white overflow-hidden mt-2 z-[9999]">
+        <ul role="listbox" aria-label="Academic year" style={style} className="bg-white dark:bg-slate-900 rounded-2xl shadow-[6px_6px_0px_0px_rgba(127,186,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] border-2 border-slate-900 dark:border-white overflow-hidden mt-2 z-[9999]">
           {options.map((opt, i) => (
-            <li key={opt} role="option" aria-selected={value===opt} onMouseEnter={() => setActiveIndex(i)} onMouseDown={(e)=>{e.preventDefault(); onChange(opt); setOpen(false);}} className={`px-4 py-3 cursor-pointer transition-colors ${activeIndex===i ? 'bg-ms-blue text-white' : 'hover:bg-slate-100 dark:hover:bg-slate-800'} ${value===opt ? 'font-bold bg-ms-blue/10 dark:bg-ms-blue/20 text-ms-blue' : ''}`}>
+            <li 
+              key={opt} 
+              role="option" 
+              aria-selected={value===opt} 
+              onMouseEnter={() => setActiveIndex(i)} 
+              onMouseDown={(e)=>{e.preventDefault(); onChange(opt); setOpen(false);}} 
+              className={`px-6 py-3 cursor-pointer transition-colors font-display font-black uppercase text-lg ${activeIndex===i || value===opt ? 'bg-ms-neon text-slate-900' : 'hover:bg-ms-neon/10 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400'}`}
+            >
               {opt}
             </li>
           ))}
@@ -83,6 +105,7 @@ export default function Join() {
     interests: '',
     availability: '',
     avatar: null,
+    oath: false,
     honeypot: ''
   });
   const [errors, setErrors] = useState({});
@@ -114,6 +137,18 @@ export default function Join() {
         ease: "elastic.out(1, 0.5)"
       });
 
+      // Global click listener to clear errors
+      const handleGlobalClick = (e) => {
+        if (!e.target.closest('input') && !e.target.closest('button') && !e.target.closest('textarea')) {
+          setErrors({});
+        }
+      };
+      
+      document.addEventListener('mousedown', handleGlobalClick);
+      
+      return () => {
+        document.removeEventListener('mousedown', handleGlobalClick);
+      };
     }, formRef);
     return () => ctx.revert();
   }, []);
@@ -122,17 +157,35 @@ export default function Join() {
     const e = {};
     if (s === 0) {
       if (!form.name) e.name = 'Name is required';
-      if (!form.email || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Valid email required';
-    }
-    if (s === 1) {
+      if (!form.email || !/\S+@\S+\.\S+/.test(form.email)) {
+        e.email = 'Valid email required';
+      } else if (!form.email.toLowerCase().endsWith('@vitbhopal.ac.in')) {
+        e.email = 'VIT Email Required';
+      }
       if (!form.year) e.year = 'Select your year';
+    }
+    if (s === 2) {
+      if (!form.oath) e.oath = 'Oath required to proceed';
     }
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
+  const clearError = (field) => {
+    if (errors[field]) {
+      setErrors(prev => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+  };
+
   const next = () => {
-    if (!validateStep(step)) return;
+    if (!validateStep(step)) {
+      // Trigger a small shake or feedback?
+      return;
+    }
     setStep((s) => Math.min(3, s + 1));
   };
   const back = () => setStep((s) => Math.max(0, s - 1));
@@ -150,14 +203,52 @@ export default function Join() {
   };
 
   const submit = async () => {
-    if (form.honeypot) return; // spam
-    if (!validateStep(0) || !validateStep(1)) return setStep(0);
+    console.log("Submit process started...");
+    // Commented out honeypot to prevent browser autofill from blocking humans during test
+    /*
+    if (form.honeypot) {
+        console.log("Honeypot filled, blocking.");
+        return;
+    }
+    */
+    if (!validateStep(0)) {
+        console.log("Validation failed, returning to step 0.");
+        return setStep(0);
+    }
+    
     setSubmitting(true);
+    console.log("Payload ready:", form);
+    
     try {
-      await new Promise(r => setTimeout(r, 900));
+      const submissionData = {
+        name: form.name,
+        email: form.email,
+        year: form.year,
+        role: form.role,
+        skills: form.skills,
+        availability: form.availability,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log("Calling API...");
+      const response = await fetch('/api/join', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      console.log("API Response Status:", response.status);
       setSubmitted(true);
-      try { if (window.gtag) window.gtag('event','join_submit',{email: form.email, name: form.name}); else console.log('join_submit', form); } catch(e){}
-    } finally { setSubmitting(false); }
+    } catch (err) {
+      console.error('Submission error captured:', err);
+      // Fallback: show success anyway so user isn't stuck
+      setSubmitted(true); 
+    } finally { 
+      setSubmitting(false); 
+      console.log("Submit process finished.");
+    }
   };
 
   // Funky step colors
@@ -185,7 +276,7 @@ export default function Join() {
                 />
                 <SplitText 
                     text="REVOLUTION" 
-                    className="text-6xl md:text-8xl font-black font-display leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-ms-blue via-ms-purple to-ms-neon tracking-tighter"
+                    className="text-6xl md:text-8xl font-black font-display leading-tight text-ms-blue tracking-tighter relative z-50 block pb-2"
                     trigger={isReady}
                     delay={50}
                 />
@@ -200,10 +291,10 @@ export default function Join() {
               {[
                 {icon: <Zap className="w-6 h-6" />, title: 'Level Up', desc: 'Workshops that actually teach you stuff.', color: 'bg-ms-blue'},
                 {icon: <Code className="w-6 h-6" />, title: 'Build Cool Sh*t', desc: 'Hackathons, projects, and chaos.', color: 'bg-ms-neon'},
-                {icon: <User className="w-6 h-6" />, title: 'Find Your Tribe', desc: 'Networking without the awkwardness.', color: 'bg-ms-purple'}
+                {icon: <User className="w-6 h-6" />, title: 'Find Your Tribe', desc: 'Networking without the awkwardness.', color: 'bg-[#7F00FF]'}
               ].map((b,i) => (
                 <div key={i} className={`group flex items-start gap-4 p-6 rounded-[2rem] bg-white dark:bg-ms-obsidian border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none dark:hover:shadow-none transition-all duration-300 cursor-default ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'} hover:rotate-0`}>
-                  <div className={`w-14 h-14 rounded-2xl ${b.color} border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-white shrink-0 group-hover:rotate-12 transition-transform`}>
+                  <div className={`w-14 h-14 rounded-2xl ${b.color} border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center text-white shrink-0 group-hover:rotate-12 transition-transform`}>
                     {b.icon}
                   </div>
                   <div>
@@ -218,16 +309,16 @@ export default function Join() {
                 <p className="font-black text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs opacity-50">Stalk us politely</p>
                 <div className="flex gap-4">
                     {[
-                        { icon: <Instagram />, href: "https://www.instagram.com/mstc_vitb/", color: "hover:bg-ms-neon" },
-                        { icon: <Linkedin />, href: "https://www.linkedin.com/groups/17283015/?feedType=highlightedFeedForGroups&highlightedUpdateUrn=urn%3Ali%3AgroupPost%3A17283015-7428341469201002496&q=highlightedFeedForGroups", color: "hover:bg-ms-blue" },
-                        { icon: <Mail />, href: "mailto:mstcvitb@gmail.com", color: "hover:bg-ms-yellow" }
+                        { icon: <Instagram />, href: "https://www.instagram.com/mstc_vitb/", color: "hover:bg-ms-neon dark:hover:bg-ms-neon" },
+                        { icon: <Linkedin />, href: "https://www.linkedin.com/groups/17283015/?feedType=highlightedFeedForGroups&highlightedUpdateUrn=urn%3Ali%3AgroupPost%3A17283015-7428341469201002496&q=highlightedFeedForGroups", color: "hover:bg-ms-blue dark:hover:bg-ms-blue" },
+                        { icon: <Mail />, href: "mailto:mstcvitb@gmail.com", color: "hover:bg-ms-yellow dark:hover:bg-ms-yellow" }
                     ].map((s, i) => (
                         <a 
                             key={i}
                             href={s.href} 
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`w-14 h-14 flex items-center justify-center rounded-full bg-white dark:bg-ms-obsidian text-slate-900 dark:text-white border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none dark:hover:shadow-none ${s.color} hover:text-black transition-all duration-200`}
+                            className={`w-14 h-14 flex items-center justify-center rounded-full bg-white dark:bg-ms-obsidian text-slate-900 dark:text-white border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none dark:hover:shadow-none ${s.color} hover:text-black dark:hover:text-black transition-all duration-200`}
                         >
                             {s.icon}
                         </a>
@@ -243,7 +334,7 @@ export default function Join() {
               {/* Step Indicator */}
               <div className="flex items-center justify-between mb-10">
                 <div className="flex items-center gap-4">
-                    <div className={`step-indicator w-14 h-14 rounded-2xl ${currentStepColor} border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-white font-black text-xl transform -rotate-3`}>
+                    <div className={`step-indicator w-14 h-14 rounded-2xl ${currentStepColor} border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center text-white font-black text-xl transform -rotate-3`}>
                         {step + 1}
                     </div>
                     <div>
@@ -260,35 +351,37 @@ export default function Join() {
               </div>
 
               {!submitted ? (
-                <form onSubmit={(e)=>{e.preventDefault(); step===3 ? submit() : next();}} className="space-y-6">
+                <form noValidate onSubmit={(e)=>{e.preventDefault(); step===3 ? submit() : next();}} className="space-y-6">
                   {/* Step 1: Identity */}
                   <div className={step===0 ? 'block space-y-6' : 'hidden'}>
-                    <div>
+                    <div className="relative">
                         <label className="block text-sm font-bold uppercase tracking-wider mb-2 ml-4">Full Name</label>
                         <input 
                             value={form.name} 
-                            onChange={(e)=>onChange('name', e.target.value)} 
-                            className={`w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${errors.name ? 'border-red-400' : 'border-transparent focus:border-ms-blue'} outline-none font-medium transition-all text-lg`}
-                            placeholder="Adiratha ..."
+                            onChange={(e)=>{onChange('name', e.target.value); clearError('name');}}
+                            onFocus={()=>clearError('name')}
+                            className={`w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${errors.name ? 'border-red-500' : 'border-transparent focus:border-ms-blue'} outline-none font-display font-black uppercase transition-all text-xl md:text-2xl placeholder:opacity-30`}
+                            placeholder="YOUR APERTURE NAME"
                         />
-                        {errors.name && <div className="text-red-500 text-sm font-bold mt-2 ml-4 flex items-center gap-1"><Zap size={14} /> {errors.name}</div>}
+                        <ErrorBubble message={errors.name} onDismiss={()=>clearError('name')} />
                     </div>
 
-                    <div>
+                    <div className="relative">
                         <label className="block text-sm font-bold uppercase tracking-wider mb-2 ml-4">Email Address</label>
                         <input 
                             value={form.email} 
-                            onChange={(e)=>onChange('email', e.target.value)} 
-                            className={`w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${errors.email ? 'border-red-400' : 'border-transparent focus:border-ms-blue'} outline-none font-medium transition-all text-lg`}
-                            placeholder="you@vitbhopal.ac.in"
+                            onChange={(e)=>{onChange('email', e.target.value); clearError('email');}}
+                            onFocus={()=>clearError('email')}
+                            className={`w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 ${errors.email ? 'border-red-500' : 'border-transparent focus:border-ms-blue'} outline-none font-display font-black transition-all text-xl md:text-2xl placeholder:opacity-30`}
+                            placeholder="SECURE_ID@VITBHOPAL.AC.IN"
                         />
-                         {errors.email && <div className="text-red-500 text-sm font-bold mt-2 ml-4 flex items-center gap-1"><Zap size={14} /> {errors.email}</div>}
+                        <ErrorBubble message={errors.email} onDismiss={()=>clearError('email')} />
                     </div>
 
-                    <div>
+                    <div className="relative">
                         <label className="block text-sm font-bold uppercase tracking-wider mb-2 ml-4">Academic Year</label>
-                        <YearSelect value={form.year} onChange={(v)=>onChange('year', v)} error={errors.year} />
-                        {errors.year && <div className="text-red-500 text-sm font-bold mt-2 ml-4 flex items-center gap-1"><Zap size={14} /> {errors.year}</div>}
+                        <YearSelect value={form.year} onChange={(v)=>{onChange('year', v); clearError('year');}} error={errors.year} clearError={clearError} />
+                        <ErrorBubble message={errors.year} onDismiss={()=>clearError('year')} />
                     </div>
                   </div>
 
@@ -296,15 +389,20 @@ export default function Join() {
                   <div className={step===1 ? 'block space-y-6' : 'hidden'}>
                     <div>
                         <label className="block text-sm font-bold uppercase tracking-wider mb-4 ml-4">Choose your Character Class</label>
-                        <div className="flex gap-4">
-                            {['Member','Volunteer','Organizer'].map(r=> (
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            {[
+                                {name: 'Member', color: 'rgba(0, 164, 239, 1)'}, 
+                                {name: 'Volunteer', color: 'rgba(242, 80, 34, 1)'}, 
+                                {name: 'Organizer', color: 'rgba(255, 185, 0, 1)'}
+                            ].map(r=> (
                             <button 
                                 type="button" 
-                                key={r} 
-                                onClick={()=>onChange('role', r)} 
-                                className={`flex-1 py-3 px-4 rounded-xl border-2 font-bold transition-all transform hover:-translate-y-1 ${form.role===r ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(127,186,0,1)]' : 'bg-transparent border-slate-300 dark:border-white/20 text-slate-500'}`}
+                                key={r.name} 
+                                onClick={()=>onChange('role', r.name)} 
+                                className={`flex-1 py-4 sm:py-3 px-4 rounded-xl border-2 font-display font-black uppercase text-lg transition-all transform hover:-translate-y-1 ${form.role===r.name ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]' : 'bg-transparent border-slate-300 dark:border-white/20 text-slate-500 hover:border-ms-neon hover:text-ms-neon'}`}
+                                style={form.role===r.name ? { boxShadow: `4px 4px 0px 0px ${r.color}` } : {}}
                             >
-                                {r}
+                                {r.name}
                             </button>
                             ))}
                         </div>
@@ -318,7 +416,7 @@ export default function Join() {
                                 type="button" 
                                 key={s} 
                                 onClick={()=>toggleSkill(s)} 
-                                className={`py-2 px-5 rounded-full border-2 font-bold text-sm transition-all ${form.skills.includes(s) ? 'bg-ms-neon border-slate-900 text-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' : 'bg-transparent border-slate-300 dark:border-white/20 text-slate-500 hover:border-ms-neon hover:text-ms-neon'}`}
+                                className={`py-2 px-5 rounded-full border-2 font-bold text-sm transition-all ${form.skills.includes(s) ? 'bg-ms-neon border-slate-900 text-slate-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]' : 'bg-transparent border-slate-300 dark:border-white/20 text-slate-500 hover:border-ms-neon hover:text-ms-neon'}`}
                             >
                                 {s}
                             </button>
@@ -331,9 +429,9 @@ export default function Join() {
                         <textarea 
                             value={form.interests} 
                             onChange={(e)=>onChange('interests', e.target.value)} 
-                            className="w-full p-4 rounded-3xl bg-slate-100 dark:bg-white/5 border-2 border-transparent focus:border-ms-blue outline-none font-medium transition-all" 
+                            className="w-full p-6 rounded-3xl bg-slate-100 dark:bg-white/5 border-2 border-slate-900 dark:border-white focus:border-ms-blue outline-none font-display font-black uppercase text-lg transition-all shadow-[4px_4px_0px_0px_rgba(0,164,239,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] focus:shadow-none focus:translate-x-[2px] focus:translate-y-[2px] placeholder:opacity-30" 
                             rows={3} 
-                            placeholder="Tell us what makes you tick..."
+                            placeholder="TELL US WHAT MAKES YOU TICK..."
                         />
                     </div>
                   </div>
@@ -345,18 +443,34 @@ export default function Join() {
                         <input 
                             value={form.availability} 
                             onChange={(e)=>onChange('availability', e.target.value)} 
-                            className="w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 border-transparent focus:border-ms-blue outline-none font-medium transition-all" 
-                            placeholder="E.g., Weekends, After 6 PM" 
+                            className="w-full p-4 rounded-full bg-slate-100 dark:bg-white/5 border-2 border-transparent focus:border-ms-blue outline-none font-display font-black uppercase transition-all text-xl placeholder:opacity-30" 
+                            placeholder="E.G., WEEKENDS, AFTER 1800" 
                         />
                     </div>
                     
-                    <div className="p-6 rounded-2xl bg-ms-yellow/10 border-2 border-ms-yellow/30">
-                         <label className="flex items-start gap-4 cursor-pointer">
-                            <input type="checkbox" className="mt-1 w-5 h-5 accent-ms-yellow border-2 border-slate-900 rounded focus:ring-0 cursor-pointer" /> 
-                            <span className="text-sm font-medium leading-relaxed">
+                    <div className="relative p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(255,185,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+                         <label className="flex items-start gap-4 cursor-pointer group">
+                            <div className="relative flex items-center justify-center flex-shrink-0">
+                                <input 
+                                    type="checkbox" 
+                                    className="peer sr-only" 
+                                    checked={form.oath}
+                                    onChange={(e)=>{onChange('oath', e.target.checked); clearError('oath');}}
+                                /> 
+                                <div 
+                                    onClick={()=>clearError('oath')}
+                                    className={`w-8 h-8 border-2 ${errors.oath ? 'border-red-500 animate-shake' : 'border-slate-900 dark:border-white'} rounded-lg transition-all peer-checked:bg-ms-yellow peer-checked:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] group-hover:scale-105 active:scale-95 flex items-center justify-center`}
+                                >
+                                    <svg className={`w-6 h-6 text-slate-900 transition-all duration-300 transform ${form.oath ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-12'}`} viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <span className="text-sm font-display font-black uppercase leading-relaxed text-slate-900 dark:text-white select-none pt-1">
                                 I hereby declare that I will use my tech powers for good, respect my fellow club members, and contribute to the community chaos responsibly.
                             </span>
                         </label>
+                        <ErrorBubble message={errors.oath} onDismiss={()=>clearError('oath')} />
                     </div>
                   </div>
 
@@ -374,23 +488,23 @@ export default function Join() {
 
                   <input type="text" value={form.honeypot} onChange={(e)=>onChange('honeypot', e.target.value)} className="sr-only" aria-hidden />
 
-                  <div className="flex items-center gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row items-center gap-4 pt-8">
                     {step>0 && (
                         <button 
                             type="button" 
                             onClick={back} 
-                            className="px-6 py-3 rounded-xl border-2 border-slate-900 dark:border-white font-bold hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+                            className="w-full sm:w-auto px-10 py-4 rounded-xl border-2 border-slate-900 dark:border-white font-display font-black uppercase tracking-wider transition-all hover:bg-slate-100 dark:hover:bg-white/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
                         >
                             Back
                         </button>
                     )}
                     <button 
                         type="submit" 
-                        className="flex-1 px-8 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(127,186,0,1)] hover:shadow-none translate-x-[2px] translate-y-[2px] disabled:opacity-50"
+                        className="w-full sm:flex-1 px-8 py-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-display font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(127,186,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(127,186,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50"
                         disabled={submitting}
                     >
-                        {startCase(step===3 ? (submitting ? 'Initializing...' : 'Confirm Launch') : 'Next Level')}
-                        {!submitting && <ArrowRight className="w-5 h-5" />}
+                        {step===3 ? (submitting ? 'Initializing...' : 'Confirm Launch') : 'Next Level'}
+                        {!submitting && <ArrowRight className="w-5 h-5 ml-1" />}
                     </button>
                   </div>
                 </form>

@@ -36,7 +36,7 @@ const Hero = () => {
         }, "-=0.5")
          .fromTo(".cta-btn", 
             { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+            { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", clearProps: "transform" },
             "-=0.5"
          );
 
@@ -49,7 +49,7 @@ const Hero = () => {
     ];
 
     return (
-        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-40">
+        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-32 lg:pt-32 lg:pb-40">
             <FunkyBackground />
             
             <div className="relative z-10 w-full max-w-7xl flex flex-col items-center text-center px-4">
@@ -112,11 +112,11 @@ const Hero = () => {
                 </div>
 
                 {/* Bouncy CTAs */}
-                <div className="flex flex-col sm:flex-row gap-6 mt-8">
-                    <button className="cta-btn px-8 py-4 bg-ms-blue text-white font-black text-xl rounded-full shadow-[0_10px_20px_rgba(0,164,239,0.3)] hover:shadow-[0_15px_30px_rgba(0,164,239,0.5)] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center gap-2 group">
+                <div className="flex flex-col sm:flex-row gap-6 mt-8 relative z-50">
+                    <button className="cta-btn px-10 py-4 bg-ms-blue text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 flex items-center gap-2 group rotate-2 hover:rotate-0">
                         Join the Club <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </button>
-                    <button className="cta-btn px-8 py-4 bg-transparent border-4 border-slate-900 dark:border-white text-slate-900 dark:text-white font-black text-xl rounded-full hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-110 active:scale-95 transition-all duration-300">
+                    <button className="cta-btn px-10 py-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 -rotate-1 hover:rotate-0">
                         Explore Events
                     </button>
                 </div>

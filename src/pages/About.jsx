@@ -78,7 +78,7 @@ export default function About() {
   
 
   return (
-    <div className="min-h-screen pt-40 relative overflow-x-hidden bg-ms-paper dark:bg-black transition-colors duration-500">
+    <div className="min-h-screen pt-24 lg:pt-40 relative overflow-x-hidden bg-ms-paper dark:bg-black transition-colors duration-500">
         <FunkyBackground />
         
         <style>{` 
@@ -103,7 +103,7 @@ export default function About() {
         }
       `}</style>
       
-      <section ref={heroRef} className="relative z-10 py-32 sm:py-40 lg:py-0 lg:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
+      <section ref={heroRef} className="relative z-10 py-12 lg:py-0 lg:min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
         <div className="container mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
             {/* Text Content */}
@@ -291,7 +291,7 @@ export default function About() {
                     To create an inclusive ecosystem where technology enthusiasts can collaborate, innovate, and grow together. 
                     We believe in democratizing technology education and providing platforms for students to transform their ideas into impactful solutions.
                   </p>
-                  <blockquote className="bg-ms-yellow/20 p-4 rounded-xl border-l-4 border-slate-900 italic text-slate-900 dark:text-white font-bold text-base">
+                  <blockquote className="bg-ms-yellow/10 dark:bg-slate-800/50 p-4 rounded-xl border-l-4 border-slate-900 dark:border-white italic text-slate-900 dark:text-white font-bold text-base">
                     "Empowering every student with the tools, knowledge, and community to shape the future of technology"
                   </blockquote>
                 </div>
@@ -328,7 +328,7 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-display font-black text-slate-900 dark:text-white mb-4">
               Impact Stories
             </h2>
-            <p className="text-xl text-slate-900 dark:text-white font-bold bg-ms-yellow/20 inline-block px-4 py-1 transform -rotate-1">
+            <p className="text-xl text-slate-900 dark:text-white font-bold bg-ms-yellow/10 dark:bg-slate-800/50 inline-block px-4 py-1 transform -rotate-1">
               Real stories of growth, innovation, and success
             </p>
           </div>
@@ -359,8 +359,8 @@ export default function About() {
       </section>
 
       {/* Marquee Section */}
-      <section className="relative py-12 overflow-hidden z-20 transform -rotate-2">
-        <div className="absolute inset-0 bg-slate-900 border-y-4 border-white shadow-[0px_10px_0px_0px_rgba(0,0,0,0.2)]"></div>
+      <section className="relative py-12 overflow-hidden z-20 transform -rotate-2 w-[110vw] -left-[5vw]">
+        <div className="absolute inset-0 bg-slate-900 border-y-4 border-slate-900 shadow-[0px_10px_0px_0px_rgba(0,0,0,0.2)]"></div>
         <div className="relative">
           <div className="flex animate-marquee whitespace-nowrap py-4">
             <div className="flex items-center space-x-16 px-4">

@@ -82,14 +82,14 @@ const SplitText = ({
   return (
     <div 
       ref={ref} 
-      className={`inline-block ${className}`} 
-      style={{ textAlign, overflow: 'hidden', opacity: trigger ? 1 : 0, transition: 'opacity 0.3s' }}
+      className={`inline-block relative ${className}`} 
+      style={{ textAlign, opacity: trigger ? 1 : 0, transition: 'opacity 0.3s' }}
     >
       {words.map((word, wordIdx) => (
         <span key={wordIdx} className="split-word inline-block whitespace-nowrap">
           {splitType === 'chars' 
             ? word.split('').map((char, charIdx) => (
-                <span key={charIdx} className="split-char inline-block">
+                <span key={charIdx} className="split-char inline-block" style={{ color: "inherit" }}>
                   {char}
                 </span>
               ))

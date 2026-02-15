@@ -89,7 +89,7 @@ export default function EventCard({ event, rotate = "rotate-0" }) {
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-sm font-black text-slate-900 dark:text-white bg-ms-yellow/20 px-3 py-1 rounded-lg border-2 border-transparent group-hover:border-slate-900 dark:group-hover:border-white transition-all">
+            <div className="flex items-center gap-2 text-sm font-black text-slate-900 bg-ms-yellow/20 dark:bg-ms-yellow px-4 py-1.5 rounded-lg border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_#000] dark:shadow-none transition-all">
               DETAILS
               <ArrowRight
                 size={16}

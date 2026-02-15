@@ -12,6 +12,7 @@ export default {
         'ms-obsidian': '#0B1221', // Deep Navy Background (Microsoft Style)
         'ms-blue': '#00A4EF', // Microsoft Blue
         'ms-violet': '#7F00FF', // Electric Violet
+        'ms-purple': '#7F00FF', // Sync with violet
         'ms-white': '#F0F4F8', // Cool White
         'ms-dim': '#888888', // Dimmed Grey
         'ms-dark': '#0f172a',
@@ -32,11 +33,23 @@ export default {
       animation: {
         'ticker': 'ticker 20s linear infinite',
         'spin-slow': 'spin 8s linear infinite',
+        'bounce-short': 'bounce-short 0.5s ease-out',
+        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
       },
       keyframes: {
         ticker: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
+        },
+        'bounce-short': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'shake': {
+          '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+          '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+          '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+          '40%, 60%': { transform: 'translate3d(4px, 0, 0)' },
         }
       },
       boxShadow: {

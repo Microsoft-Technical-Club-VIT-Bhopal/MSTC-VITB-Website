@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -40,7 +40,14 @@ const Navbar = () => {
     }, { scope: navRef });
 
     const toggleTheme = (event) => {
+        // Fallback to center of screen if coordinates are missing (mobile/keyboard)
+        const x = event?.clientX ?? window.innerWidth / 2;
+        const y = event?.clientY ?? window.innerHeight / 2;
+
         const updateTheme = () => {
+            // Temporarily disable standard CSS transitions to avoid conflicts with View Transition reveal
+            document.documentElement.classList.add('no-transitions');
+            
             if (isDark) {
                 document.documentElement.classList.remove('dark');
                 localStorage.theme = 'light';
@@ -50,6 +57,12 @@ const Navbar = () => {
                 localStorage.theme = 'dark';
                 setIsDark(true);
             }
+            
+            // Force reflow and restore transitions after a tiny delay
+            document.documentElement.offsetHeight;
+            setTimeout(() => {
+                document.documentElement.classList.remove('no-transitions');
+            }, 100);
         };
 
         if (!document.startViewTransition) {
@@ -57,11 +70,9 @@ const Navbar = () => {
             return;
         }
 
-        const x = event.clientX;
-        const y = event.clientY;
         const endRadius = Math.hypot(
-            Math.max(x, innerWidth - x),
-            Math.max(y, innerHeight - y)
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
         );
 
         const transition = document.startViewTransition(() => {
@@ -77,8 +88,8 @@ const Navbar = () => {
                     ],
                 },
                 {
-                    duration: 600,
-                    easing: 'ease-in-out',
+                    duration: 500, // Slightly faster for mobile responsiveness
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
                     pseudoElement: '::view-transition-new(root)',
                 }
             );
@@ -156,7 +167,11 @@ const Navbar = () => {
                         `}
                         aria-label="Toggle Theme"
                     >
-                        {isDark ? <Sun size={18} className="animate-spin-slow" /> : <Moon size={18} />}
+                        {isDark ? (
+                            <img src="/svg/sun.svg" alt="Light Mode" className="w-[18px] h-[18px] dark:invert" />
+                        ) : (
+                            <img src="/svg/moon.svg" alt="Dark Mode" className="w-[18px] h-[18px] dark:invert" />
+                        )}
                     </button>
 
                     <NavLink 
@@ -196,7 +211,11 @@ const Navbar = () => {
                         onClick={toggleTheme}
                         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ffb900] text-black border-2 border-black dark:border-white shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] text-[10px] font-black uppercase active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all z-20 flex-shrink-0"
                     >
-                        {isDark ? <><Sun size={12} /> LIGHT_MODE</> : <><Moon size={12} /> DARK_MODE</>}
+                        {isDark ? (
+                            <><img src="/svg/sun.svg" alt="Sun" className="w-3 h-3 dark:invert" /> LIGHT_MODE</>
+                        ) : (
+                            <><img src="/svg/moon.svg" alt="Moon" className="w-3 h-3 dark:invert" /> DARK_MODE</>
+                        )}
                     </button>
                 </div>
 

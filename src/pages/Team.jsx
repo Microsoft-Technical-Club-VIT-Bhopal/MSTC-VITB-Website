@@ -94,12 +94,12 @@ export default function Team() {
 
           {/* Team Members Grid */}
           <div className="flex-1">
-            <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6 bg-ms-yellow/20 p-8 rounded-[2rem] border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] -rotate-1">
+            <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6 bg-ms-yellow/10 dark:bg-ms-yellow p-8 rounded-[2rem] border-4 border-slate-900 dark:border-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_#fff] -rotate-1">
                 <div>
-                    <h2 className="text-4xl font-black text-slate-900 dark:text-white font-display uppercase tracking-tighter">
+                    <h2 className="text-4xl font-black text-slate-900 dark:text-slate-900 font-display uppercase tracking-tighter">
                         {selectedTeam}
                     </h2>
-                    <p className="text-slate-900 dark:text-slate-200 mt-2 font-bold text-lg leading-snug max-w-xl">
+                    <p className="text-slate-900 dark:text-slate-800 mt-2 font-bold text-lg leading-snug max-w-xl">
                         {teamDescriptions[selectedTeam]}
                     </p>
                 </div>

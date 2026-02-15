@@ -99,13 +99,17 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 20px rgba(0, 164, 239, 0.5);
 }
 
-.glow-box {
-  box-shadow: 0 0 40px rgba(0, 164, 239, 0.1);
-}
-
 .hero-liquid {
   /* Placeholder for liquid text effect logic integration */
   mix-blend-mode: overlay;
+}
+
+/* Fix for smooth theme toggle transitions */
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
 }
 
 
