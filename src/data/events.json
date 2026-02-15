@@ -46,24 +46,6 @@
   ]
 },
   {
-    "id": 4,
-    "title": "code-garuda-2",
-    "date": "un availabl",
-    "status": "past",
-    "location": "MSTC Seminar Room",
-    "description": "Hands-on cloud workshop covering Azure fundamentals and deployment strategies.",
-    "image_path": ""
-  },
-  {
-    "id": 5,
-    "title": "vainateya-2",
-    "date": "un available",
-    "status": "past",
-    "location": "Lab Complex",
-    "description": "A beginner-friendly bootcamp covering AI, ML, and real project demos.",
-    "image_path": ""
-  },
-  {
     "id": 7,
     "title": "Fun Hackathon advitya 2026",
     "date": "Reveal Soon",

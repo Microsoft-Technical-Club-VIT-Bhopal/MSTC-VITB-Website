@@ -44,9 +44,9 @@ export default function About() {
   
   // Dynamic Statistics State
   const [stats, setStats] = useState([
-    { value: 500, suffix: '+', label: 'Community Members', color: 'text-ms-blue' },
-    { value: 50, suffix: '+', label: 'Events & Workshops', color: 'text-ms-purple' },
-    { value: 24, suffix: 'h', label: 'Hackathon Duration', color: 'text-ms-neon' },
+    { value: 35, suffix: '+', label: 'Active Members', color: 'text-ms-blue' },
+    { value: 3, suffix: '+', label: 'Workshops Hosted', color: 'text-ms-purple' },
+    { value: 8, suffix: 'h', label: 'Hackathon Duration', color: 'text-ms-neon' },
     { value: 100, suffix: '%', label: 'Passion Driven', color: 'text-green-400' }
   ]);
 
@@ -219,7 +219,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               { 
-                value: 500, 
+                value: 35, 
                 label: 'Active Members', 
                 color: 'text-ms-blue', 
                 bg: 'bg-white dark:bg-slate-900',
@@ -230,7 +230,7 @@ export default function About() {
                 iconShadow: 'dark:shadow-icon-blue'
               },
               { 
-                value: 50, 
+                value: 3, 
                 label: 'Workshops Hosted', 
                 color: 'text-ms-green', 
                 bg: 'bg-white dark:bg-slate-900',
@@ -241,7 +241,7 @@ export default function About() {
                 iconShadow: 'dark:shadow-icon-green'
               },
               { 
-                value: 24, 
+                value: 8, 
                 label: 'Hackathon Duration', 
                 color: 'text-ms-orange', 
                 bg: 'bg-white dark:bg-slate-900',
@@ -365,9 +365,9 @@ export default function About() {
           <div className="flex animate-marquee whitespace-nowrap py-4">
             <div className="flex items-center space-x-16 px-4">
               {[
-                { icon: <Star className="w-8 h-8" />, text: "500+ Active Members" },
-                { icon: <Rocket className="w-8 h-8" />, text: "24-Hour Hackathons" },
-                { icon: <Lightbulb className="w-8 h-8" />, text: "50+ Workshops" },
+                { icon: <Star className="w-8 h-8" />, text: "35+ Active Members" },
+                { icon: <Rocket className="w-8 h-8" />, text: "8-Hour Hackathons" },
+                { icon: <Lightbulb className="w-8 h-8" />, text: "3+ Workshops" },
                 { icon: <Users className="w-8 h-8" />, text: "Tech Community" },
                 { icon: <Heart className="w-8 h-8" />, text: "Collaborative Learning" },
                 { icon: <Calendar className="w-8 h-8" />, text: "Year-Round Events" },
@@ -383,9 +383,9 @@ export default function About() {
             {/* Duplicate for seamless loop */}
             <div className="flex items-center space-x-16 px-4">
              {[
-                { icon: <Star className="w-8 h-8" />, text: "500+ Active Members" },
-                { icon: <Rocket className="w-8 h-8" />, text: "24-Hour Hackathons" },
-                { icon: <Lightbulb className="w-8 h-8" />, text: "50+ Workshops" },
+                { icon: <Star className="w-8 h-8" />, text: "35+ Active Members" },
+                { icon: <Rocket className="w-8 h-8" />, text: "8-Hour Hackathons" },
+                { icon: <Lightbulb className="w-8 h-8" />, text: "3+ Workshops" },
                 { icon: <Users className="w-8 h-8" />, text: "Tech Community" },
                 { icon: <Heart className="w-8 h-8" />, text: "Collaborative Learning" },
                 { icon: <Calendar className="w-8 h-8" />, text: "Year-Round Events" },

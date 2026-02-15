@@ -27,6 +27,7 @@ export default function Events() {
                 text="EVENTS" 
                 className="inline-block"
                 delay={50}
+                enableScrollTrigger={false}
               />
             </h1>
             <div className="absolute -top-6 -right-8 bg-ms-yellow dark:bg-slate-900 text-slate-900 dark:text-white font-bold px-4 py-1 rotate-12 border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] text-sm md:text-base hidden md:block">

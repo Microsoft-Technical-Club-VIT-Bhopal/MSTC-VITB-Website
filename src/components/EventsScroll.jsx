@@ -11,7 +11,7 @@ const EventCard = ({ title, subtitle, date, location, image, isPast, slug }) => 
         <div className="relative flex-shrink-0 w-[85vw] md:w-[480px] h-[50vh] md:h-[58vh] bg-white dark:bg-slate-900 border-4 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] rounded-3xl overflow-hidden group mx-6 flex flex-col transition-all duration-200 hover:translate-x-[8px] hover:translate-y-[8px] hover:!shadow-none dark:hover:!shadow-none">
             {/* Image Section */}
             <div className="h-2/5 border-b-4 border-slate-900 dark:border-white relative overflow-hidden bg-slate-100 dark:bg-slate-800">
-                {image && <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />}
+                {image && <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500" />}
                 <div className="absolute inset-0 bg-ms-blue/20 dark:bg-ms-blue/10 mix-blend-overlay" />
                 <div className="absolute top-4 left-4 z-10">
                     <span className="bg-ms-yellow text-slate-900 font-black px-3 py-1 border-2 border-slate-900 dark:border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] group-hover:shadow-none group-hover:translate-x-[2px] group-hover:translate-y-[2px] transition-all duration-200 text-[10px] md:text-xs uppercase inline-block">
@@ -106,7 +106,7 @@ const EventsScroll = () => {
         <div ref={wrapperRef} className="relative">
         <section ref={sectionRef} className="sticky top-0 h-screen overflow-hidden bg-ms-paper dark:bg-black transition-colors duration-500">
             {/* Header / Ticket Stub */}
-            <div className="absolute top-[6vh] left-6 md:left-10 z-20 pointer-events-none">
+            <div className="absolute top-[3vh] left-6 md:left-10 z-20 pointer-events-none">
                  <div className="flex flex-col gap-2">
                      <div className="flex items-center gap-3">
                         <div className="bg-ms-black dark:bg-white text-white dark:text-slate-900 px-3 py-1 text-[10px] md:text-sm font-black uppercase tracking-tighter border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,164,239,1)] transform -rotate-3 inline-block">
@@ -115,7 +115,7 @@ const EventsScroll = () => {
                         <div className="w-12 h-1 bg-gradient-to-r from-ms-blue to-ms-neon shadow-[0_0_10px_rgba(0,164,239,0.5)]" />
                      </div>
                      
-                     <div className="relative">
+                     <div className="relative flex items-center gap-6">
                          {/* Background sticker effect */}
                          <div className="absolute -inset-x-4 -inset-y-2 bg-ms-blue/10 dark:bg-ms-neon/5 blur-2xl rounded-full" />
                          
@@ -126,14 +126,28 @@ const EventsScroll = () => {
                             duration={1}
                             splitType="chars"
                          />
-                         
-                         {/* Decorative underline */}
-                         <div className="h-2 w-1/2 bg-ms-yellow mt-2 border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transform rotate-1" />
+
+                         {/* Mouse Scroll Animation - Desktop: Flex Position */}
+                         <div className="hidden md:flex flex-col items-center gap-2 mt-4 ml-4 group pointer-events-auto cursor-help">
+                            <div className="w-6 h-10 border-2 border-slate-900 dark:border-white rounded-full relative flex justify-center p-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] group-hover:translate-x-[2px] group-hover:translate-y-[2px] group-hover:shadow-none transition-all">
+                                <div className="w-1.5 h-1.5 bg-ms-blue dark:bg-ms-neon rounded-full animate-scroll-dot" />
+                            </div>
+                         </div>
                      </div>
+
+                     {/* Decorative underline */}
+                     <div className="h-2 w-1/2 bg-ms-yellow mt-2 border-2 border-slate-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transform rotate-1" />
                  </div>
             </div>
 
-            <div ref={containerRef} className="flex h-full items-center pb-12 pl-[10vw] pr-[10vw] w-fit pt-[35vh]">
+            {/* Mouse Scroll Animation - Dedicated Mobile Position (In the black space) */}
+            <div className="absolute top-[28vh] left-1/2 -translate-x-1/2 flex md:hidden flex-col items-center gap-2 z-20 pointer-events-auto cursor-help">
+               <div className="w-6 h-10 border-2 border-slate-900 dark:border-white rounded-full relative flex justify-center p-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
+                   <div className="w-1.5 h-1.5 bg-ms-blue dark:bg-ms-neon rounded-full animate-scroll-dot" />
+               </div>
+            </div>
+
+            <div ref={containerRef} className="flex h-full items-center pb-12 pl-[10vw] pr-[10vw] w-fit pt-[45vh]">
                 {displayEvents.map((event, i) => (
                     <EventCard 
                         key={event.id || i}

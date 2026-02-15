@@ -128,3 +128,20 @@ h1, h2, h3, h4, h5, h6 {
 ::view-transition-new(root) {
   z-index: 9999;
 }
+
+@keyframes scroll-dot {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}

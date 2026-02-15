@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import gsap from "gsap";
 
 export default function EventCard({ event, rotate = "rotate-0" }) {
   const cardRef = useRef(null);

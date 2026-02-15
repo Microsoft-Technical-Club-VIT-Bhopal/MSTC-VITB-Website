@@ -87,7 +87,7 @@ const FunkyStats = () => {
                     
                     <div className="md:-mt-12">
                         <StatBubble 
-                            number={120} 
+                            number={25} 
                             label="Active Members" 
                             colorClass="border-ms-blue shadow-ms-blue/20" 
                             rotateClass="-rotate-6"
@@ -107,7 +107,7 @@ const FunkyStats = () => {
 
                     <div className="md:-mt-8">
                         <StatBubble 
-                            number={25} 
+                            number={5} 
                             label="Events Held" 
                             colorClass="border-ms-neon shadow-ms-neon/20" 
                             rotateClass="-rotate-3"

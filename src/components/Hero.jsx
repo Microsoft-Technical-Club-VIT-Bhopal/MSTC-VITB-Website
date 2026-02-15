@@ -49,38 +49,18 @@ const Hero = () => {
     ];
 
     return (
-        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-32 lg:pt-32 lg:pb-40">
+        <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-36 pb-32 lg:pt-32 lg:pb-40">
             <FunkyBackground />
             
             <div className="relative z-10 w-full max-w-7xl flex flex-col items-center text-center px-4">
                 
                 {/* GIANT Funky Headline */}
                 <div className="relative mb-6 flex flex-col items-center justify-center pointer-events-none select-none">
-                    <div className="relative z-10 mix-blend-lighten dark:mix-blend-normal">
+                    <div className="relative z-10 mix-blend-normal">
                          <SplitText
-                             text="CODE."
-                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-slate-900 dark:text-white hero-word"
-                            delay={10}
-                            duration={0.8}
-                            ease="back.out"
-                            trigger={isReady}
-                        />
-                    </div>
-                    <div className="relative z-20 -mt-[2vw] mix-blend-normal">
-                        <SplitText
-                            text="CRAFT."
-                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-ms-blue via-ms-violet to-ms-blue hero-word"
-                            delay={50}
-                             duration={0.8}
-                             ease="back.out"
-                             trigger={isReady}
-                        />
-                    </div>
-                     <div className="relative z-10 -mt-[2vw] mix-blend-lighten dark:mix-blend-normal">
-                         <SplitText
-                            text="CHAOS."
-                            className="text-[9vw] leading-[0.8] font-display font-black tracking-tighter text-slate-900 dark:text-white hero-word"
-                            delay={90}
+                             text="MICROSOFT"
+                             className="text-[12vw] sm:text-[10vw] md:text-[9vw] lg:text-[8vw] leading-[0.8] font-display font-black tracking-tighter text-slate-900 dark:text-white hero-word"
+                             delay={10}
                              duration={0.8}
                              ease="back.out"
                              trigger={isReady}
@@ -90,8 +70,8 @@ const Hero = () => {
 
                 {/* Funky Description Box */}
                 <div className="hero-desc backdrop-blur-md bg-white/30 dark:bg-black/30 border-2 border-slate-900 dark:border-white/20 p-6 rounded-[2rem] max-w-2xl mb-8 transform -rotate-1 shadow-lg">
-                    <p className="text-xl md:text-2xl text-slate-900 dark:text-white font-medium leading-relaxed">
-                        Empowering the next generation of <span className="font-black text-ms-blue">visionaries</span>.
+                    <p className="text-xl md:text-3xl text-slate-900 dark:text-white font-black leading-relaxed">
+                        <span className="text-ms-blue">Technical</span> <span className="text-ms-orange">club</span> <span className="text-ms-green">-VIT</span> <span className="text-ms-yellow">BHOPAL</span>
                     </p>
                 </div>
 
@@ -124,10 +104,10 @@ const Hero = () => {
             </div>
             
             {/* MINI GAMES - VISIBLE ON DESKTOP (LG+) */}
-            <div className="hidden lg:block absolute left-[5%] top-[12%] z-20 transform -rotate-6 scale-75 xl:scale-100">
+            <div className="hidden lg:block absolute left-[2%] top-[8%] z-20 transform -rotate-6 scale-[0.5] xl:scale-[0.7] transition-all">
                 <TicTacToe />
             </div>
-            <div className="hidden lg:block absolute right-[5%] top-[18%] z-20 transform rotate-6 scale-75 xl:scale-90">
+            <div className="hidden lg:block absolute right-[6%] top-[15%] z-20 transform rotate-6 scale-75 xl:scale-85 transition-all">
                 <ConnectDots />
             </div>
 

@@ -23,6 +23,7 @@ const SplitText = ({
   textAlign = 'center',
   tag = 'p',
   trigger = true,
+  enableScrollTrigger = true,
   onLetterAnimationComplete
 }) => {
   const ref = useRef(null);
@@ -50,26 +51,27 @@ const SplitText = ({
       const sign = marginValue === 0 ? '' : marginValue < 0 ? `-=${Math.abs(marginValue)}${marginUnit}` : `+=${marginValue}${marginUnit}`;
       const start = `top ${startPct}%${sign}`;
 
-      gsap.fromTo(
-        targets,
-        { ...from },
-        {
+      const vars = {
           ...to,
           duration,
           ease,
           stagger: delay / 1000,
-          scrollTrigger: {
-            trigger: el,
-            start,
-            once: true,
-            fastScrollEnd: true,
-            anticipatePin: 0.4
-          },
           onComplete: onLetterAnimationComplete,
           willChange: 'transform, opacity',
           force3D: true
-        }
-      );
+      };
+
+      if (enableScrollTrigger) {
+          vars.scrollTrigger = {
+              trigger: el,
+              start,
+              once: true,
+              fastScrollEnd: true,
+              anticipatePin: 0.4
+          };
+      }
+
+      gsap.fromTo(targets, { ...from }, vars);
     },
     {
       dependencies: [text, fontsLoaded, trigger],

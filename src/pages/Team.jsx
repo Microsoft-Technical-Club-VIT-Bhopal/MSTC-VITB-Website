@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import teamData from '../data/team.json';
 import TeamCard from '../components/TeamCard';
 import FunkyBackground from '../components/FunkyBackground';
@@ -7,6 +7,7 @@ import SplitText from '../components/SplitText';
 export default function Team() {
   const [selectedTeam, setSelectedTeam] = useState('The Panel');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const bannerRef = useRef(null);
 
   const teamDescriptions = {
     'The Panel': 'The leadership driving our vision forward, coordinating initiatives and ensuring seamless club operations.',
@@ -26,11 +27,11 @@ export default function Team() {
     // Start fade out
     setIsTransitioning(true);
     
-    // Scroll to top of page smoothly
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    // Scroll to banner with offset
+    if (bannerRef.current) {
+        const y = bannerRef.current.getBoundingClientRect().top + window.scrollY - 150;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }
     
     // Wait for fade out, then change team and fade in
     setTimeout(() => {
@@ -94,7 +95,7 @@ export default function Team() {
 
           {/* Team Members Grid */}
           <div className="flex-1">
-            <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6 bg-ms-yellow/10 dark:bg-ms-yellow p-8 rounded-[2rem] border-4 border-slate-900 dark:border-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_#fff] -rotate-1">
+            <div ref={bannerRef} className="mb-10 flex flex-col md:flex-row items-center justify-between gap-6 bg-ms-yellow/10 dark:bg-ms-yellow p-8 rounded-[2rem] border-4 border-slate-900 dark:border-slate-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_#fff] -rotate-1">
                 <div>
                     <h2 className="text-4xl font-black text-slate-900 dark:text-slate-900 font-display uppercase tracking-tighter">
                         {selectedTeam}
