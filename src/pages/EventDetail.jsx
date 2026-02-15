@@ -63,12 +63,12 @@ export default function EventDetail() {
         <div className="bg-white dark:bg-slate-900 rounded-[2rem] border-4 border-slate-900 dark:border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] overflow-hidden">
             
             {/* Image Slider */}
-            <div className="relative h-64 sm:h-96 md:h-[28rem] lg:h-[32rem] border-b-4 border-slate-900 dark:border-white bg-slate-100 dark:bg-slate-800 group">
+            <div className="relative h-56 sm:h-80 md:h-[24rem] lg:h-[28rem] border-b-4 border-slate-900 dark:border-white bg-slate-100 dark:bg-slate-800 group">
                 {images.length > 0 ? (
                     <img 
                         src={images[current]} 
                         alt={event.title} 
-                        className="w-full h-full object-cover transition-transform duration-500"
+                        className="w-full h-full object-cover object-[center_10%] transition-transform duration-500"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold text-xl">
@@ -138,16 +138,63 @@ export default function EventDetail() {
                         </span>
                     </div>
                     
-                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-black leading-tight text-slate-900 dark:text-white break-words">
-                        {event.title}
-                    </h1>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-black leading-tight text-slate-900 dark:text-white break-words flex-1">
+                            {event.title}
+                        </h1>
+                        <img 
+                            src="/QR%20Code.svg" 
+                            alt="Scan Code" 
+                            className="w-24 h-24 md:w-40 md:h-40 lg:w-48 lg:h-48 border-4 border-slate-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] bg-white p-2"
+                        />
+                    </div>
                 </div>
 
                 {/* Description */}
                 <div className="prose prose-lg dark:prose-invert max-w-none border-t-4 border-slate-900/10 dark:border-white/10 pt-8">
-                    <p className="text-lg md:text-xl font-medium leading-relaxed text-slate-700 dark:text-slate-300">
-                        {event.description}
-                    </p>
+                    {event.long_description ? (
+                        <div className="space-y-6">
+                            {event.long_description.split('\n\n').map((block, i) => {
+                                if (block.startsWith('# ')) {
+                                    return <h2 key={i} className="text-3xl font-black text-ms-blue mt-8 mb-4">{block.replace('# ', '')}</h2>;
+                                }
+                                if (block.startsWith('## ')) {
+                                    return <h3 key={i} className="text-2xl font-black text-slate-800 dark:text-slate-200 mt-6 mb-3">{block.replace('## ', '')}</h3>;
+                                }
+                                if (block === '---') {
+                                    return <hr key={i} className="border-t-2 border-slate-900/10 dark:border-white/10 my-8" />;
+                                }
+                                if (block.includes('- ')) {
+                                    return (
+                                        <ul key={i} className="space-y-2 list-none">
+                                            {block.split('\n').map((item, j) => (
+                                                <li key={j} className="flex items-start gap-3 text-lg font-medium text-slate-700 dark:text-slate-300">
+                                                    <span className="mt-2 w-2 h-2 rounded-full bg-ms-blue flex-shrink-0" />
+                                                    {item.replace('- ', '')}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    );
+                                }
+                                // Handle bold text within blocks
+                                const content = block.split('\n').map((line, k) => (
+                                    <span key={k} className="block">
+                                        {line.split(/(\*\*.*?\*\*)/).map((part, l) => {
+                                            if (part.startsWith('**') && part.endsWith('**')) {
+                                                return <strong key={l} className="text-ms-purple">{part.slice(2, -2)}</strong>;
+                                            }
+                                            return part;
+                                        })}
+                                    </span>
+                                ));
+                                return <p key={i} className="text-lg md:text-xl font-medium leading-relaxed text-slate-700 dark:text-slate-300">{content}</p>;
+                            })}
+                        </div>
+                    ) : (
+                        <p className="text-lg md:text-xl font-medium leading-relaxed text-slate-700 dark:text-slate-300">
+                            {event.description}
+                        </p>
+                    )}
                 </div>
 
                 {/* Registration CTA - Only if upcoming */}
@@ -157,14 +204,10 @@ export default function EventDetail() {
                             href={event.registrationLink || "#"} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-ms-blue text-white text-xl font-black rounded-xl border-4 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95 group"
+                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-ms-blue text-white text-xl font-black rounded-xl border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none dark:hover:shadow-none transition-all active:scale-95 group"
                         >
                             Register Now <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                         </a>
-                        
-                        <button className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 text-xl font-black rounded-xl border-4 border-slate-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95">
-                            Add to Calendar
-                        </button>
                     </div>
                 )}
             </div>

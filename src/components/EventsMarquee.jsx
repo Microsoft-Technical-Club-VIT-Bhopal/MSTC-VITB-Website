@@ -1,49 +1,54 @@
 import React from 'react';
 import { ArrowUpRight, MapPin, Calendar, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const events = [
     {
-        title: "Code Garuda 3.0",
-        date: "Oct 12",
-        time: "10:00 AM",
-        location: "Advitya Hall",
+        title: "Code Garuda 4.0",
+        slug: "code-garuda-4",
+        date: "Reveal Soon",
+        time: "TBA",
+        location: "MSTC Hall",
         rotate: "rotate-2",
         color: "bg-ms-blue"
     },
     {
         title: "Vainateya 2.0",
-        date: "Nov 05",
-        time: "2:00 PM",
-        location: "Robotics Lab",
+        slug: "vainateya-2",
+        date: "Past",
+        time: "TBA",
+        location: "Auditorium",
         rotate: "-rotate-3",
         color: "bg-ms-violet"
     }
 ];
 
 const EventCard = ({ event }) => (
-    <div className={`flex-shrink-0 w-80 md:w-96 p-6 mr-16 rounded-[2rem] bg-white dark:bg-ms-obsidian border-2 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:!shadow-none dark:hover:!shadow-none hover:translate-x-[4px] hover:translate-y-[4px] active:scale-[0.98] transition-all duration-200 cursor-pointer ${event.rotate} hover:rotate-0 group`}>
-        <div className="flex justify-between items-start mb-6">
-            <div className={`px-3 py-1 rounded-full border-2 border-slate-900 dark:border-white text-xs font-black uppercase tracking-wider ${event.color} text-white`}>
-                {event.date}
+    <Link to={`/events/${event.slug}`} className={`block transition-transform duration-200 ${event.rotate} hover:rotate-0`}>
+        <div className={`flex-shrink-0 w-80 md:w-96 p-6 mr-16 rounded-[2rem] bg-white dark:bg-ms-obsidian border-2 border-slate-900 dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:!shadow-none dark:hover:!shadow-none hover:translate-x-[4px] hover:translate-y-[4px] active:scale-[0.98] transition-all duration-200 cursor-pointer h-full group`}>
+            <div className="flex justify-between items-start mb-6">
+                <div className={`px-3 py-1 rounded-full border-2 border-slate-900 dark:border-white text-xs font-black uppercase tracking-wider ${event.color} text-white`}>
+                    {event.date}
+                </div>
+                <ArrowUpRight className="text-slate-900 dark:text-white group-hover:rotate-45 transition-transform" />
             </div>
-            <ArrowUpRight className="text-slate-900 dark:text-white group-hover:rotate-45 transition-transform" />
-        </div>
 
-        <h3 className="text-3xl font-display font-black leading-tight text-slate-900 dark:text-white mb-4 line-clamp-2">
-            {event.title}
-        </h3>
+            <h3 className="text-3xl font-display font-black leading-tight text-slate-900 dark:text-white mb-4 line-clamp-2">
+                {event.title}
+            </h3>
 
-        <div className="flex flex-col gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
-            <div className="flex items-center gap-2">
-                <Clock size={16} />
-                {event.time}
-            </div>
-            <div className="flex items-center gap-2">
-                <MapPin size={16} />
-                {event.location}
+            <div className="flex flex-col gap-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                <div className="flex items-center gap-2">
+                    <Clock size={16} />
+                    {event.time}
+                </div>
+                <div className="flex items-center gap-2">
+                    <MapPin size={16} />
+                    {event.location}
+                </div>
             </div>
         </div>
-    </div>
+    </Link>
 );
 
 const EventsMarquee = () => {

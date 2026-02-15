@@ -2,6 +2,15 @@
   "teams": {
     "The Panel": [
       {
+        "id": 0,
+        "name": "Dr. S. Hariharasitaraman",
+        "role": "Faculty Coordinator",
+        "image": "/faculty coordinator.jpeg",
+        "linkedin_url": "https://www.linkedin.com/company/mstc-vit-bhopal/",
+        "instagram_url": "",
+        "isSpecial": true
+      },
+      {
         "id": 1,
         "name": "Divyanshi Kadyan",
         "role": "President",

@@ -114,6 +114,18 @@ export default function Team() {
                 </div>
             </div>
 
+            {/* Special Member Display (Faculty Coordinator) */}
+            {currentMembers.find(m => m.isSpecial) && (
+                <div className="mb-16 flex justify-center px-4">
+                    <div className="w-full max-w-3xl transform hover:scale-[1.02] transition-transform duration-300">
+                        <TeamCard 
+                            member={currentMembers.find(m => m.isSpecial)} 
+                            rotate="rotate-0" 
+                        />
+                    </div>
+                </div>
+            )}
+
             {/* Cards Grid with Enhanced Fade and Scale Animation */}
             <div
               className={`grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 transition-all duration-700 ease-out p-4 ${
@@ -122,7 +134,7 @@ export default function Team() {
                   : 'opacity-100 scale-100 translate-y-0 blur-0'
               }`}
             >
-              {currentMembers.map((member, index) => (
+              {currentMembers.filter(m => !m.isSpecial).map((member, index) => (
                 <TeamCard 
                     key={member.id} 
                     member={member} 

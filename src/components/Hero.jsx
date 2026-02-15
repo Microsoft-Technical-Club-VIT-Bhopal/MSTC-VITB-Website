@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import SplitText from './SplitText';
@@ -93,12 +94,18 @@ const Hero = () => {
 
                 {/* Bouncy CTAs */}
                 <div className="flex flex-col sm:flex-row gap-6 mt-8 relative z-50">
-                    <button className="cta-btn px-10 py-4 bg-ms-blue text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 flex items-center gap-2 group rotate-2 hover:rotate-0">
+                    <Link 
+                        to="/join"
+                        className="cta-btn px-10 py-4 bg-ms-blue text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 flex items-center justify-center gap-2 group rotate-2 hover:rotate-0"
+                    >
                         Join the Club <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                    <button className="cta-btn px-10 py-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 -rotate-1 hover:rotate-0">
+                    </Link>
+                    <Link 
+                        to="/events"
+                        className="cta-btn px-10 py-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-black text-xl rounded-full border-4 border-slate-900 dark:border-white shadow-[6px_6px_0px_0px_#000] dark:shadow-[6px_6px_0px_0px_#fff] hover:translate-x-[6px] hover:translate-y-[6px] hover:shadow-none dark:hover:shadow-none active:scale-95 transition-all duration-150 flex items-center justify-center -rotate-1 hover:rotate-0"
+                    >
                         Explore Events
-                    </button>
+                    </Link>
                 </div>
 
             </div>
